@@ -8,6 +8,7 @@
     "start": "node serve.mjs",
     "test:unit": "node --test tests/quests.test.mjs",
     "test:browser": "node tests/browser.cjs && node tests/acceptance.cjs",
+    "test:finn": "node tests/finn-animation.cjs",
     "test:navigation": "node tests/navigation.cjs"
   },
   "dependencies": {

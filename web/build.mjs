@@ -1,6 +1,6 @@
 import {build} from 'esbuild';
 import {mkdir,readFile,writeFile,cp} from 'node:fs/promises';
-const result=await build({entryPoints:['src/main.js'],bundle:true,minify:true,write:false,format:'iife',target:['es2020']});
+const result=await build({entryPoints:['src/main.js'],bundle:true,loader:{'.glb':'binary'},minify:true,write:false,format:'iife',target:['es2020']});
 const template=await readFile('src/index.html','utf8');
 const license=await readFile('node_modules/three/LICENSE','utf8');
 await mkdir('dist',{recursive:true});

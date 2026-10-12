@@ -40,3 +40,13 @@ O jogador agora usa um Finn estilizado baseado na referência enviada: chapéu b
 - [Vista lateral real](web/docs/finn-side.png)
 - [Vista traseira real](web/docs/finn-back.png)
 - [Detalhes e limitações](web/public/assets/characters/README.md)
+
+## Animações de combate
+
+O Finn agora usa esqueleto e animações adaptadas da biblioteca CC0 do Quaternius. **J** ataca com a espada; **K** alterna os socos. Caminhada, corrida e reação ao dano também são animadas. O dano acontece uma vez durante cada golpe, respeitando alcance, paredes e intervalo entre ataques.
+
+- [Baixar Finn animado GLB](web/public/assets/characters/finn-animated.glb)
+- [Captura real no jogo](web/docs/finn-animated-game.png)
+- [Origem e licença das animações](web/public/assets/animations/README.md)
+
+A esquiva/rolamento ainda não está implementada.
