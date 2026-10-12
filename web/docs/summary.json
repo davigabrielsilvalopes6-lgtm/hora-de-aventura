@@ -1,0 +1,13 @@
+{
+  "unit_tests_passed": 3,
+  "browser_checks_passed": 16,
+  "checks_passed": 19,
+  "blocked_checks": 1,
+  "blocked_reason": "Managed Chromium rejects file://; offline DOM execution validated; Windows file opening unverified",
+  "browser": "154.0.8037.57",
+  "original_glb_meshes": 374,
+  "godot_project_preserved": true,
+  "github_published": false,
+  "public_game_url": null,
+  "html_sha256": "694577836d0cc9521c23b7c6e8e6010029d86934f6b890ec47fb941f5245f1ee"
+}

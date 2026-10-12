@@ -1,0 +1,46 @@
+{
+  "browser": "154.0.8037.57",
+  "results": [
+    {
+      "name": "Starts in hall, movement and diagonal speed",
+      "passed": true
+    },
+    {
+      "name": "Real door chain and dialogue trigger",
+      "passed": true
+    },
+    {
+      "name": "Mission order blocks city exit and future actions",
+      "passed": true
+    },
+    {
+      "name": "Puzzle wrong order reset and correct order",
+      "passed": true
+    },
+    {
+      "name": "Combat, invulnerability and finite invasion",
+      "passed": true
+    },
+    {
+      "name": "Window and roof playable with actual input",
+      "passed": true
+    },
+    {
+      "name": "Original GLB renders, 374 preserved meshes",
+      "passed": true
+    },
+    {
+      "name": "Save/reload restores objective and roof checkpoint",
+      "passed": true
+    },
+    {
+      "name": "Pause freezes movement and mobile viewport fits",
+      "passed": true
+    },
+    {
+      "name": "Browser JS has no uncaught/render errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

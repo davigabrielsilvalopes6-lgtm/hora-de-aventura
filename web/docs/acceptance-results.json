@@ -1,0 +1,35 @@
+{
+  "browser": "154.0.8037.57",
+  "results": [
+    {
+      "name": "Nine missions completed with E, attack keys, finite waves and documents",
+      "passed": true
+    },
+    {
+      "name": "All 24 rooms have supported safe arrivals and exits",
+      "passed": true
+    },
+    {
+      "name": "Malformed browser save is rejected without crash",
+      "passed": true
+    },
+    {
+      "name": "Self-contained HTML runs with network offline",
+      "passed": true
+    },
+    {
+      "name": "Direct file URL on managed Chromium",
+      "skipped": true,
+      "reason": "Confirmed ERR_BLOCKED_BY_ADMINISTRATOR on file:// navigation. Offline DOM render is tested separately; Windows file opening is not verified."
+    },
+    {
+      "name": "Touch controls move the character on mobile layout",
+      "passed": true
+    },
+    {
+      "name": "No browser runtime errors during full story",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,674 @@
+{
+  "main_hall": {
+    "title": "Grande salão",
+    "width": 18,
+    "depth": 24,
+    "height": 7,
+    "color": "#F3C9D5",
+    "floor": "Térreo",
+    "episode_lead": "Slumber Party Panic",
+    "doors": [
+      {
+        "target": "city",
+        "position": [
+          0,
+          0,
+          11.82
+        ]
+      },
+      {
+        "target": "throne",
+        "position": [
+          0,
+          0,
+          -11.82
+        ]
+      },
+      {
+        "target": "ground_gallery",
+        "position": [
+          -8.82,
+          0,
+          -6.0
+        ]
+      },
+      {
+        "target": "stairs",
+        "position": [
+          8.82,
+          0,
+          -6.0
+        ]
+      }
+    ]
+  },
+  "throne": {
+    "title": "Salão do trono",
+    "width": 16,
+    "depth": 20,
+    "height": 7,
+    "color": "#D9C9EA",
+    "floor": "Térreo",
+    "episode_lead": "Referência parcial",
+    "doors": [
+      {
+        "target": "main_hall",
+        "position": [
+          0,
+          0,
+          9.82
+        ]
+      }
+    ]
+  },
+  "bedroom": {
+    "title": "Quarto de Jujuba",
+    "width": 14,
+    "depth": 16,
+    "height": 5,
+    "color": "#F3C9D5",
+    "floor": "Primeiro andar",
+    "episode_lead": "Mortal Recoil",
+    "doors": [
+      {
+        "target": "first_gallery",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      },
+      {
+        "target": "bathroom",
+        "position": [
+          0,
+          0,
+          -7.82
+        ]
+      }
+    ]
+  },
+  "bathroom": {
+    "title": "Banheiro",
+    "width": 10,
+    "depth": 12,
+    "height": 4.5,
+    "color": "#B9D9E9",
+    "floor": "Primeiro andar",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "bedroom",
+        "position": [
+          0,
+          0,
+          5.82
+        ]
+      }
+    ]
+  },
+  "laboratory": {
+    "title": "Laboratório principal",
+    "width": 18,
+    "depth": 22,
+    "height": 6,
+    "color": "#B9D9E9",
+    "floor": "Área científica",
+    "episode_lead": "Slumber Party Panic; From Bad to Worse",
+    "doors": [
+      {
+        "target": "kitchen",
+        "position": [
+          0,
+          0,
+          10.82
+        ]
+      },
+      {
+        "target": "maintenance",
+        "position": [
+          0,
+          0,
+          -10.82
+        ]
+      },
+      {
+        "target": "dungeon",
+        "position": [
+          -8.82,
+          0,
+          3.5
+        ]
+      }
+    ]
+  },
+  "office": {
+    "title": "Escritório real",
+    "width": 12,
+    "depth": 16,
+    "height": 5,
+    "color": "#D9C9EA",
+    "floor": "Primeiro andar",
+    "episode_lead": "Bun Bun",
+    "doors": [
+      {
+        "target": "first_gallery",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      }
+    ]
+  },
+  "tea_room": {
+    "title": "Sala de chá",
+    "width": 12,
+    "depth": 14,
+    "height": 5,
+    "color": "#F3C9D5",
+    "floor": "Primeiro andar",
+    "episode_lead": "The Duke",
+    "doors": [
+      {
+        "target": "first_gallery",
+        "position": [
+          0,
+          0,
+          6.82
+        ]
+      }
+    ]
+  },
+  "kitchen": {
+    "title": "Cozinha real",
+    "width": 14,
+    "depth": 18,
+    "height": 5,
+    "color": "#F8E8DE",
+    "floor": "Área de serviço",
+    "episode_lead": "Rattleballs",
+    "doors": [
+      {
+        "target": "ground_gallery",
+        "position": [
+          0,
+          0,
+          8.82
+        ]
+      },
+      {
+        "target": "pantry",
+        "position": [
+          6.82,
+          0,
+          4.5
+        ]
+      },
+      {
+        "target": "laboratory",
+        "position": [
+          -6.82,
+          0,
+          -4.5
+        ]
+      }
+    ]
+  },
+  "nursery": {
+    "title": "Berçário",
+    "width": 12,
+    "depth": 14,
+    "height": 5,
+    "color": "#D9C9EA",
+    "floor": "Primeiro andar",
+    "episode_lead": "Death in Bloom",
+    "doors": [
+      {
+        "target": "first_gallery",
+        "position": [
+          0,
+          0,
+          6.82
+        ]
+      },
+      {
+        "target": "secret",
+        "position": [
+          0,
+          0,
+          -6.82
+        ]
+      }
+    ]
+  },
+  "secret": {
+    "title": "Sala secreta",
+    "width": 12,
+    "depth": 16,
+    "height": 5,
+    "color": "#a694c7",
+    "floor": "Subsolo",
+    "episode_lead": "The Enchiridion!; Death in Bloom",
+    "doors": [
+      {
+        "target": "nursery",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      },
+      {
+        "target": "dungeon",
+        "position": [
+          0,
+          0,
+          -7.82
+        ]
+      }
+    ]
+  },
+  "dungeon": {
+    "title": "Masmorras",
+    "width": 18,
+    "depth": 24,
+    "height": 5,
+    "color": "#9b91a3",
+    "floor": "Subsolo",
+    "episode_lead": "What Have You Done?; Apple Wedding",
+    "doors": [
+      {
+        "target": "laboratory",
+        "position": [
+          0,
+          0,
+          11.82
+        ]
+      },
+      {
+        "target": "stairs",
+        "position": [
+          0,
+          0,
+          -11.82
+        ]
+      },
+      {
+        "target": "secret",
+        "position": [
+          -8.82,
+          0,
+          3.5
+        ]
+      }
+    ]
+  },
+  "hospital": {
+    "title": "Hospital — ala de atendimento",
+    "width": 22,
+    "depth": 24,
+    "height": 6,
+    "color": "#B9D9E9",
+    "floor": "Térreo",
+    "episode_lead": "No One Can Hear You; Do No Harm; Two Swords",
+    "doors": [
+      {
+        "target": "ground_gallery",
+        "position": [
+          0,
+          0,
+          11.82
+        ]
+      }
+    ]
+  },
+  "tree": {
+    "title": "Interior da árvore",
+    "width": 18,
+    "depth": 22,
+    "height": 7,
+    "color": "#c08c71",
+    "floor": "Árvore superior",
+    "episode_lead": "Mortal Folly; The Suitor",
+    "doors": [
+      {
+        "target": "stairs",
+        "position": [
+          0,
+          0,
+          10.82
+        ]
+      },
+      {
+        "target": "amber",
+        "position": [
+          0,
+          0,
+          -10.82
+        ]
+      }
+    ]
+  },
+  "amber": {
+    "title": "Prisão de âmbar",
+    "width": 16,
+    "depth": 18,
+    "height": 7,
+    "color": "#bc926e",
+    "floor": "Árvore superior",
+    "episode_lead": "Mortal Folly",
+    "doors": [
+      {
+        "target": "tree",
+        "position": [
+          0,
+          0,
+          8.82
+        ]
+      }
+    ]
+  },
+  "stairs": {
+    "title": "Escadaria de merengue",
+    "width": 16,
+    "depth": 22,
+    "height": 10,
+    "color": "#F3C9D5",
+    "floor": "Circulação vertical",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "main_hall",
+        "position": [
+          0,
+          0,
+          10.82
+        ]
+      },
+      {
+        "target": "first_gallery",
+        "position": [
+          -7.82,
+          2.8,
+          -8
+        ]
+      },
+      {
+        "target": "second_gallery",
+        "position": [
+          7.82,
+          5.6,
+          8
+        ]
+      },
+      {
+        "target": "dungeon",
+        "position": [
+          -7.82,
+          0,
+          7
+        ]
+      },
+      {
+        "target": "tree",
+        "position": [
+          -7.82,
+          5.6,
+          8
+        ]
+      }
+    ]
+  },
+  "ground_gallery": {
+    "title": "Galeria do térreo",
+    "width": 12,
+    "depth": 22,
+    "height": 5,
+    "color": "#F8E8DE",
+    "floor": "Térreo",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "main_hall",
+        "position": [
+          0,
+          0,
+          10.82
+        ]
+      },
+      {
+        "target": "hospital",
+        "position": [
+          0,
+          0,
+          -10.82
+        ]
+      },
+      {
+        "target": "guards",
+        "position": [
+          -5.82,
+          0,
+          -5.5
+        ]
+      },
+      {
+        "target": "kitchen",
+        "position": [
+          5.82,
+          0,
+          -5.5
+        ]
+      }
+    ]
+  },
+  "first_gallery": {
+    "title": "Galeria do primeiro andar",
+    "width": 12,
+    "depth": 22,
+    "height": 5,
+    "color": "#F3C9D5",
+    "floor": "Primeiro andar",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "stairs",
+        "position": [
+          0,
+          0,
+          10.82
+        ]
+      },
+      {
+        "target": "bedroom",
+        "position": [
+          0,
+          0,
+          -10.82
+        ]
+      },
+      {
+        "target": "office",
+        "position": [
+          -5.82,
+          0,
+          -5.5
+        ]
+      },
+      {
+        "target": "tea_room",
+        "position": [
+          5.82,
+          0,
+          -5.5
+        ]
+      },
+      {
+        "target": "nursery",
+        "position": [
+          -5.82,
+          0,
+          5.5
+        ]
+      }
+    ]
+  },
+  "second_gallery": {
+    "title": "Galeria do segundo andar",
+    "width": 12,
+    "depth": 22,
+    "height": 5,
+    "color": "#D9C9EA",
+    "floor": "Segundo andar",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "stairs",
+        "position": [
+          0,
+          0,
+          10.82
+        ]
+      },
+      {
+        "target": "library",
+        "position": [
+          0,
+          0,
+          -10.82
+        ]
+      },
+      {
+        "target": "guest",
+        "position": [
+          -5.82,
+          0,
+          -5.5
+        ]
+      }
+    ]
+  },
+  "library": {
+    "title": "Biblioteca",
+    "width": 14,
+    "depth": 18,
+    "height": 6,
+    "color": "#D9C9EA",
+    "floor": "Segundo andar",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "second_gallery",
+        "position": [
+          0,
+          0,
+          8.82
+        ]
+      },
+      {
+        "target": "archive",
+        "position": [
+          0,
+          0,
+          -8.82
+        ]
+      }
+    ]
+  },
+  "archive": {
+    "title": "Arquivo real",
+    "width": 12,
+    "depth": 16,
+    "height": 5,
+    "color": "#F8E8DE",
+    "floor": "Segundo andar",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "library",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      }
+    ]
+  },
+  "guest": {
+    "title": "Aposentos de visitantes",
+    "width": 12,
+    "depth": 16,
+    "height": 5,
+    "color": "#B9D9E9",
+    "floor": "Segundo andar",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "second_gallery",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      }
+    ]
+  },
+  "guards": {
+    "title": "Sala de guardas",
+    "width": 12,
+    "depth": 16,
+    "height": 5,
+    "color": "#F8E8DE",
+    "floor": "Térreo",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "ground_gallery",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      }
+    ]
+  },
+  "pantry": {
+    "title": "Despensa",
+    "width": 12,
+    "depth": 14,
+    "height": 4.5,
+    "color": "#F8E8DE",
+    "floor": "Área de serviço",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "kitchen",
+        "position": [
+          0,
+          0,
+          6.82
+        ]
+      }
+    ]
+  },
+  "maintenance": {
+    "title": "Manutenção científica",
+    "width": 12,
+    "depth": 16,
+    "height": 5,
+    "color": "#B9D9E9",
+    "floor": "Área científica",
+    "episode_lead": "Adaptação",
+    "doors": [
+      {
+        "target": "laboratory",
+        "position": [
+          0,
+          0,
+          7.82
+        ]
+      }
+    ]
+  }
+}

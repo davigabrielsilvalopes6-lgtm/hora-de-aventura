@@ -1,0 +1,6 @@
+node_modules/
+dist/
+docs/diagnosis.png
+docs/mobile-diagnostic.png
+docs/mobile-after-touch.png
+tests/diagnostic.cjs

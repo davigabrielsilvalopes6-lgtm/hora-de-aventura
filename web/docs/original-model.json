@@ -1,0 +1,9 @@
+{
+  "source": "assets/models/castle/candy_kingdom_castle.glb",
+  "copy": "web/public/assets/castle.glb",
+  "unchanged": true,
+  "sha256": "253a4e960957e5bb8713f347bedb8aac936aac9437673db82d4f5bfd1b74d0bf",
+  "meshes_verified_in_browser": 374,
+  "license": "CC BY 4.0",
+  "author": "Kenny Park"
+}

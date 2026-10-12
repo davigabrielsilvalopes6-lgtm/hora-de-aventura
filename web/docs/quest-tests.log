@@ -1,0 +1,15 @@
+
+> reino-doce-browser@0.1.0 test:unit
+> node --test tests/quests.test.mjs
+
+✔ All objectives are ordered and finite (1.162692ms)
+✔ Snapshots round trip at every objective and partial kill (2.28123ms)
+✔ Malformed snapshots do not mutate progress (0.361796ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.671967

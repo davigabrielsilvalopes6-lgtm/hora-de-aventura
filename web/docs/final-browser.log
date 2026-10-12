@@ -1,0 +1,33 @@
+
+> reino-doce-browser@0.1.0 test:browser
+> node tests/browser.cjs && node tests/acceptance.cjs
+
+PASS Starts in hall, movement and diagonal speed
+PASS Real door chain and dialogue trigger
+PASS Mission order blocks city exit and future actions
+PASS Puzzle wrong order reset and correct order
+PASS Combat, invulnerability and finite invasion
+PASS Window and roof playable with actual input
+PASS Original GLB renders, 374 preserved meshes
+PASS Save/reload restores objective and roof checkpoint
+PASS Pause freezes movement and mobile viewport fits
+PASS Browser JS has no uncaught/render errors
+PASS Nine missions completed with E, attack keys, finite waves and documents
+PASS All 24 rooms have supported safe arrivals and exits
+PASS Malformed browser save is rejected without crash
+PASS Self-contained HTML runs with network offline
+PASS Touch controls move the character on mobile layout
+PASS No browser runtime errors during full story
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+FINAL ACCEPTANCE REVALIDATION:
+PASS Nine missions completed with E, attack keys, finite waves and documents
+PASS All 24 rooms have supported safe arrivals and exits
+PASS Malformed browser save is rejected without crash
+PASS Self-contained HTML runs with network offline
+PASS Touch controls move the character on mobile layout
+PASS No browser runtime errors during full story
