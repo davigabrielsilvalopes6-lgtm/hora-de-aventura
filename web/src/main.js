@@ -1,6 +1,7 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import rooms from './rooms.json';
+import {createFinn} from './finn.js';
 import {Progress,quests} from './quests.js';
 const $=id=>document.getElementById(id), keys=new Set(), color={pink:0xf3c9d5,cream:0xf8e8de,lilac:0xd9c9ea,blue:0xb9d9e9,ink:0x614367};
 const canvas=$('game');let renderer;
@@ -67,7 +68,7 @@ function character(parent,kind='candy',c=color.blue){
  if(kind==='zombie'){sphere(.25,1.55,-.1,.18,.18,.08,0x98af75,figure);box(0,1.24,-.27,.18,.07,.04,0x614367,figure);}
  return figure;
 }
-const finn=character(player,'finn'),dog=character(jake,'jake');
+const finnModel=createFinn();player.add(finnModel.root);const finn=finnModel.root,dog=character(jake,'jake');
 function solid(x,y,z,w,h,d,c=color.cream){const m=box(x,y,z,w,h,d,c);const s={min:new T.Vector3(x-w/2,y-h/2,z-d/2),max:new T.Vector3(x+w/2,y+h/2,z+d/2),mesh:m};solids.push(s);return s;}
 function floor(x,y,z,w,d,c=color.cream){box(x,y-.15,z,w,.3,d,c);floors.push({x,z,y,w,d});}
 function supportAt(x,z,currentY=Infinity){let y=-Infinity;for(const s of solids)if(x>s.min.x-.2&&x<s.max.x+.2&&z>s.min.z-.2&&z<s.max.z+.2&&s.max.y<=currentY+.18)y=Math.max(y,s.max.y);for(const f of floors)if(Math.abs(x-f.x)<f.w/2+.2&&Math.abs(z-f.z)<f.d/2+.2&&f.y<=currentY+.18)y=Math.max(y,f.y);for(const r of ramps)if(Math.abs(x-r.x)<r.w/2+.2&&z>=r.a&&z<=r.b){const h=r.base+(r.reverse?(z-r.a):(r.b-z))/(r.b-r.a)*r.height;if(h<=currentY+.25)y=Math.max(y,h);}return y;}
@@ -231,7 +232,7 @@ function navPath(start,target){const cell=1,radius=rooms[room]?Math.max(rooms[ro
  if(!end)return [];const path=[];while(end){path.unshift(new T.Vector3(end[0],0,end[1]));end=prev.get(key(...end));}return path.slice(1);
 }
 function step(dt){clock+=dt;attackCD=Math.max(0,attackCD-dt);hurtCD=Math.max(0,hurtCD-dt);finn.rotation.z=T.MathUtils.damp(finn.rotation.z,0,15,dt);
- const dx=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0),dz=(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-(keys.has('KeyW')||keys.has('ArrowUp')?1:0);const dir=new T.Vector3(dx,0,dz);if(dir.lengthSq()){dir.normalize().applyAxisAngle(new T.Vector3(0,1,0),yaw);facing.copy(dir);player.rotation.y=Math.atan2(-dir.x,-dir.z);walkTime+=dt*10;finn.position.y=Math.sin(walkTime)*.035;}
+ const dx=(keys.has('KeyD')||keys.has('ArrowRight')?1:0)-(keys.has('KeyA')||keys.has('ArrowLeft')?1:0),dz=(keys.has('KeyS')||keys.has('ArrowDown')?1:0)-(keys.has('KeyW')||keys.has('ArrowUp')?1:0);const dir=new T.Vector3(dx,0,dz);finnModel.animate(walkTime,dir.lengthSq()>0,attackCD>.25);if(dir.lengthSq()){dir.normalize().applyAxisAngle(new T.Vector3(0,1,0),yaw);facing.copy(dir);player.rotation.y=Math.atan2(-dir.x,-dir.z);walkTime+=dt*10;finn.position.y=Math.sin(walkTime)*.035;}
  const speed=keys.has('ShiftLeft')||keys.has('ShiftRight')?10:7;movement(player.position,dir.x*speed*dt,dir.z*speed*dt);
  if(jumpRequest&&grounded){vy=9;grounded=false;audioCue(660,.06);}jumpRequest=false;
  const oldY=player.position.y;vy-=24*dt;player.position.y+=vy*dt;

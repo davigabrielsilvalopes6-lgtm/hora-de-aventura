@@ -30,3 +30,13 @@ Controles: WASD ou setas para andar, Shift para correr, espaço para pular, E pa
 Consulte [web/README.md](web/README.md) para testes, limitações e créditos. As capturas em `web/docs/` são imagens reais do protótipo. Resultados anteriores documentam testes locais; não comprovam uma execução do GitHub Actions neste repositório.
 
 O modelo do castelo tem atribuição e licença CC BY 4.0 em [CREDITS.md](web/public/assets/CREDITS.md). Three.js é distribuído sob licença MIT.
+
+## Finn 3D
+
+O jogador agora usa um Finn estilizado baseado na referência enviada: chapéu branco, rosto, roupa azul, mochila verde e braço mecânico. O modelo é procedural, com movimento dos membros no jogo.
+
+- [Baixar Finn GLB](web/public/assets/characters/finn.glb) — use o botão de download do arquivo.
+- [Vista frontal real](web/docs/finn-front.png)
+- [Vista lateral real](web/docs/finn-side.png)
+- [Vista traseira real](web/docs/finn-back.png)
+- [Detalhes e limitações](web/public/assets/characters/README.md)
