@@ -5,12 +5,12 @@ import {Progress,quests} from './quests.js';
 const $=id=>document.getElementById(id), keys=new Set(), color={pink:0xf3c9d5,cream:0xf8e8de,lilac:0xd9c9ea,blue:0xb9d9e9,ink:0x614367};
 const canvas=$('game');let renderer;
 try{renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});}catch(e){$('dialogue').textContent='Seu navegador não conseguiu iniciar o 3D. Ative a aceleração gráfica ou tente Chrome/Edge atualizado.';throw e;}
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
 const scene=new T.Scene();scene.background=new T.Color(0xb9d9e9);scene.fog=new T.Fog(0xb9d9e9,90,190);
 const camera=new T.PerspectiveCamera(65,innerWidth/innerHeight,.08,220);scene.add(new T.HemisphereLight(0xfff7f0,0xa18698,1.5));
 const sun=new T.DirectionalLight(0xfff2df,2);sun.position.set(20,50,30);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-30;sun.shadow.camera.right=30;sun.shadow.camera.top=30;sun.shadow.camera.bottom=-30;sun.shadow.normalBias=.05;scene.add(sun);
 let world=new T.Group();scene.add(world);const actorRoot=new T.Group();scene.add(actorRoot);
-const shapes={box:new T.BoxGeometry(1,1,1),sphere:new T.SphereGeometry(.5,12,8),cylinder:new T.CylinderGeometry(1,1,1,16),cone:new T.ConeGeometry(1,1,16),ring:new T.TorusGeometry(.45,.065,6,20)};
+const shapes={plaque:new T.PlaneGeometry(3.25,.72),box:new T.BoxGeometry(1,1,1),sphere:new T.SphereGeometry(.5,12,8),cylinder:new T.CylinderGeometry(1,1,1,16),cone:new T.ConeGeometry(1,1,16),ring:new T.TorusGeometry(.45,.065,6,20)};
 const mats=new Map(), labels=new Map();
 let buildingStatic=false,staticMeshes=[];
 function mat(c){const k=String(c);if(!mats.has(k))mats.set(k,new T.MeshStandardMaterial({color:c,roughness:.85}));return mats.get(k);}
@@ -21,8 +21,39 @@ const cyl=(x,y,z,r,h,c,p)=>mesh('cylinder',x,y,z,r,h,r,c,p);
 let roomLabels=[],solids=[],floors=[],ramps=[],interactions=[],zombies=[],room='main_hall',mode='start',progress=new Progress(),roof=false,checkpoint='main_hall',puzzle=0,noticeUntil=0,alarmTime=0,enemySerial=0,audio,originalCastle=null,modelPromise=null,modelState='';
 let lite=!['http:','https:'].includes(location.protocol)||new URLSearchParams(location.search).has('lite'),fallbackCastle=null;
 let yaw=0,pitch=.3,clock=0,attackCD=0,hurtCD=0,hp=5,jumpRequest=false,grounded=false,vy=0,walkTime=0,elapsed=0;
+const renderPrevious=new T.Vector3();let missionArrow=null;
 const player=new T.Group(),jake=new T.Group();actorRoot.add(player,jake);let facing=new T.Vector3(0,0,-1);
 function label(text,x,y,z,p=world){if(!labels.has(text)){const c=document.createElement('canvas');c.width=512;c.height=96;const ctx=c.getContext('2d');ctx.fillStyle='rgba(255,247,238,.88)';ctx.beginPath();ctx.roundRect(1,1,510,94,22);ctx.fill();ctx.fillStyle='#614367';ctx.font='bold 26px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,256,48,490);labels.set(text,new T.SpriteMaterial({map:new T.CanvasTexture(c),depthTest:true}));}const sprite=new T.Sprite(labels.get(text));sprite.position.set(x,y,z);sprite.scale.set(3.8,.72,1);p.add(sprite);roomLabels.push(sprite);return sprite;}
+function doorSign(text,node){
+ const key='sign:'+text;
+ if(!labels.has(key)){
+  const c=document.createElement('canvas');c.width=1024;c.height=256;
+  const ctx=c.getContext('2d');ctx.fillStyle='#F8E8DE';ctx.fillRect(0,0,1024,256);
+  ctx.strokeStyle='#B783A4';ctx.lineWidth=18;ctx.strokeRect(12,12,1000,232);
+  ctx.fillStyle='#614367';ctx.textAlign='center';ctx.textBaseline='middle';
+  let size=68;do{ctx.font=`bold ${size}px system-ui`;size-=2;}while(ctx.measureText(text).width>940&&size>24);
+  ctx.fillText(text,512,128);
+  const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+  labels.set(key,new T.MeshBasicMaterial({map:texture}));
+ }
+ // Positive local Z faces the room, with the board clear of the wall.
+ box(0,3.65,.18,3.4,.85,.16,color.ink,node);
+ const plate=new T.Mesh(shapes.plaque,labels.get(key));plate.position.set(0,3.65,.27);node.add(plate);
+ node.userData.sign=text;
+}
+function updateMissionArrow(){
+ if(!missionArrow){missionArrow=new T.Group();scene.add(missionArrow);
+ const material=new T.MeshBasicMaterial({color:0xffd34f});
+ const stem=new T.Mesh(new T.CylinderGeometry(.09,.09,.5,8),material);stem.position.y=.45;missionArrow.add(stem);
+ const tip=new T.Mesh(new T.ConeGeometry(.28,.4,12),material);tip.rotation.z=Math.PI;missionArrow.add(tip);
+ }
+ const next=nextDoorTarget();const point=next?interactions.find(p=>p.kind==='door'&&p.target===next):interactions.find(p=>p.event===expected());
+ missionArrow.visible=mode==='game'&&!!progress.current&&!!point;
+ if(point){missionArrow.position.copy(point.pos);if(point.kind==='door')missionArrow.position.addScaledVector(point.inward,.8);
+ missionArrow.position.y=point.pos.y+(point.kind==='door'?3.6:3.4)+Math.sin(elapsed*3)*.12;
+ missionArrow.userData.target=point.target||point.event;
+ }else missionArrow.userData.target=null;
+}
 function character(parent,kind='candy',c=color.blue){
  const figure=new T.Group();parent.add(figure);
  if(kind==='jake'){sphere(0,.6,0,.9,1.1,.7,0xe4b85a,figure);sphere(0,1.07,-.08,.9,.55,.65,0xe4b85a,figure);for(const x of [-.22,.22]){sphere(x,1.13,-.33,.18,.18,.1,color.ink,figure);sphere(x,.16,0,.25,.3,.3,0xe4b85a,figure);}sphere(0,1,-.42,.22,.18,.17,color.ink,figure);return figure;}
@@ -107,7 +138,7 @@ function buildRoom(id,from='city'){
   for(const dx of [-1.05,1.05])cyl(dx,1.6,0,.11,3.2,color.cream,node);
   mesh('ring',0,3,0,2.4,2.4,1,color.cream,node);sphere(.6,1.4,.2,.16,.16,.16,0xe1c270,node);
   const title=door.target==='city'?'Saída do castelo':rooms[door.target].title;
-  label(door.target==='secret'?'Estante antiga':title,0,3.8,0,node);
+  doorSign(door.target==='secret'?'Estante antiga':title,node);
   interactions.push({kind:'door',title,target:door.target,pos:new T.Vector3(x,y+1,z),inward});
  }
  const arrival=interactions.find(p=>p.target===from)||interactions.find(p=>p.kind==='door');
@@ -136,7 +167,7 @@ function changeRoom(id,from=room){keys.clear();jumpRequest=false;world.traverse(
  buildingStatic=true;staticMeshes=[];
  if(id==='outside')buildOutside();else buildRoom(id,from);
  buildingStatic=false;batchStatic();
- buildEvents();jake.position.copy(player.position).add(new T.Vector3(1,0,1));syncHUD();}
+ buildEvents();renderPrevious.copy(player.position);jake.position.copy(player.position).add(new T.Vector3(1,0,1));syncHUD();}
 function expected(){return progress.current?.[0]||'';}
 function buildEvents(){
  const e=expected();
@@ -228,7 +259,15 @@ function step(dt){clock+=dt;attackCD=Math.max(0,attackCD-dt);hurtCD=Math.max(0,h
 function updateCamera(dt){const target=player.position.clone().add(new T.Vector3(0,1.1,0));const direction=new T.Vector3(Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),Math.cos(yaw)*Math.cos(pitch));let distance=5;
  const ray=new T.Ray(target,direction);for(const s of solids){const hit=ray.intersectBox(new T.Box3(s.min,s.max),new T.Vector3());if(hit)distance=Math.min(distance,Math.max(.65,hit.distanceTo(target)-.25));}
  const desired=target.clone().addScaledVector(direction,distance);if(rooms[room])desired.y=Math.min(desired.y,rooms[room].height-.4);camera.position.lerp(desired,1-Math.exp(-dt*12));camera.lookAt(target);}
-function route(){if(room==='outside')return 'Janela → sacadas → telhados → pátio → portão lateral';const e=expected(),target=['alarm','guard','hall_kill','defense_kill','debrief'].includes(e)?'main_hall':'laboratory';if(room===target)return 'Objetivo nesta área · procure os anéis dourados';const prev={[room]:null},queue=[room];while(queue.length){const at=queue.shift();for(const d of rooms[at]?.doors||[]){if(['city','secret','dungeon','tree','amber'].includes(d.target)||d.target in prev)continue;prev[d.target]=at;queue.push(d.target);}}if(!(target in prev))return 'Explore o castelo';let n=target;while(prev[n]&&prev[n]!==room)n=prev[n];return 'Próxima porta: '+rooms[n].title;}
+function nextDoorTarget(){
+ if(room==='outside'||!progress.current)return null;
+ const target=['alarm','guard','hall_kill','defense_kill','debrief'].includes(expected())?'main_hall':'laboratory';
+ if(room===target)return null;
+ const prev={[room]:null},queue=[room];
+ while(queue.length){const at=queue.shift();for(const d of rooms[at]?.doors||[]){if(['city','secret','dungeon','tree','amber'].includes(d.target)||d.target in prev)continue;prev[d.target]=at;queue.push(d.target);}}
+ if(!(target in prev))return null;let next=target;while(prev[next]&&prev[next]!==room)next=prev[next];return next;
+}
+function route(){if(room==='outside')return 'Janela → sacadas → telhados → pátio → portão lateral';const next=nextDoorTarget();return next?'Siga a seta amarela → '+rooms[next].title:'Objetivo nesta área · siga a seta ou os anéis dourados';}
 function syncHUD(){const c=progress.current;$('life').textContent=Array.from({length:5},(_,i)=>i<hp?'♥':'♡').join(' ');$('mission').textContent=c?`MISSÃO ${progress.q+1} · ${quests[progress.q][0]}`:'PRIMEIRA PARTE CONCLUÍDA';$('objective').textContent=c?`${c[2]} · ${progress.n}/${c[1]}`:'Próximo destino: Fábrica de Doces Abandonada.';$('route').textContent=c?route():'Explore as áreas recuperadas.';$('fill').style.width=`${progress.q/quests.length*100}%`;$('location').textContent=room==='outside'?'Sacadas, telhados e pátio':rooms[room].title;}
 const SAVE='reino-doce-browser-v1';
 function save(){try{localStorage.setItem(SAVE,JSON.stringify({version:1,progress:progress.snapshot(),room:checkpoint,roof}));$('saved').textContent='Progresso salvo';return true;}catch{$('saved').textContent='Salvamento indisponível';return false;}}
@@ -247,5 +286,5 @@ for(const b of document.querySelectorAll('[data-key]')){b.addEventListener('poin
 for(const b of document.querySelectorAll('[data-action]'))b.onclick=()=>{if(mode!=='game')return;if(b.dataset.action==='jump')jumpRequest=true;if(b.dataset.action==='attack')attack();if(b.dataset.action==='interact')interact();};
 function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}addEventListener('resize',resize);resize();
 changeRoom('main_hall','city');camera.position.set(2,3,10);menu();
-let then=performance.now(),accumulator=0;function frame(now){const dt=Math.min(.1,(now-then)/1000);then=now;elapsed+=dt;if(mode==='game'){accumulator+=dt;let n=0;while(accumulator>=1/60&&n++<6){step(1/60);accumulator-=1/60;}if(n>6)accumulator=0;}else accumulator=0;updateCamera(dt);for(const sprite of roomLabels)sprite.visible=camera.position.distanceTo(sprite.getWorldPosition(new T.Vector3()))>2.4;renderer.render(scene,camera);requestAnimationFrame(frame);}requestAnimationFrame(frame);
-if(new URLSearchParams(location.search).has('qa'))window.__qa={state:()=>({room,mode,hp,grounded,clock,camera:camera.position.toArray(),direction:camera.getWorldDirection(new T.Vector3()).toArray(),angles:[yaw,pitch],drawCalls:renderer.info.render.calls,position:player.position.toArray(),progress:progress.snapshot(),event:expected(),zombies:zombies.map(e=>({id:e.id,hp:e.health,position:e.node.position.toArray(),state:e.state})),modelState}),fixture(event,id){progress=new Progress();while(progress.current&&expected()!==event)progress.accept(expected());roof=false;checkpoint=id;changeRoom(id);resume();},place(x,y,z){player.position.set(x,y,z);vy=0;},point(event){const p=interactions.find(p=>p.event===event||p.target===event);if(!p)return null;player.position.copy(p.pos);player.position.y-=p.kind==='door'?1:0;if(p.kind==='door')player.position.addScaledVector(p.inward,1.5);else player.position.z+=1.1;vy=0;return p.title;},strikeAt(id){const e=zombies.find(z=>z.id===id);if(!e)return false;player.position.copy(e.node.position).add(new T.Vector3(0,0,1.3));facing.set(0,0,-1);player.rotation.y=0;return true;},setCamera(a){yaw=a;},save,read:savedData,step,attack,visit:(id,from)=>changeRoom(id,from),model:()=>originalCastle,async original(){lite=false;const m=await loadCastle();if(m&&room==='outside'){world.remove(fallbackCastle);world.add(m);}return !!m;},collision:()=>({solids:solids.length,floors:floors.length,doorCount:interactions.filter(p=>p.kind==='door').length,support:supportAt(player.position.x,player.position.z,player.position.y+.3),spawnBlocked:solids.some(s=>overlap(s,player.position.x,player.position.z))})};
+let then=performance.now(),accumulator=0;function frame(now){const dt=Math.min(.1,(now-then)/1000);then=now;elapsed+=dt;if(mode==='game'){accumulator+=dt;let n=0;while(accumulator>=1/60&&n++<6){renderPrevious.copy(player.position);step(1/60);accumulator-=1/60;}if(n>6)accumulator=0;}else accumulator=0;const physicalPosition=player.position.clone();if(mode==='game'&&renderPrevious.distanceToSquared(physicalPosition)<4)player.position.lerpVectors(renderPrevious,physicalPosition,Math.min(1,accumulator*60));updateCamera(dt);updateMissionArrow();for(const sprite of roomLabels)sprite.visible=camera.position.distanceTo(sprite.getWorldPosition(new T.Vector3()))>2.4;renderer.render(scene,camera);player.position.copy(physicalPosition);requestAnimationFrame(frame);}requestAnimationFrame(frame);
+if(new URLSearchParams(location.search).has('qa'))window.__qa={state:()=>({room,mode,hp,grounded,clock,camera:camera.position.toArray(),direction:camera.getWorldDirection(new T.Vector3()).toArray(),angles:[yaw,pitch],drawCalls:renderer.info.render.calls,position:player.position.toArray(),progress:progress.snapshot(),event:expected(),zombies:zombies.map(e=>({id:e.id,hp:e.health,position:e.node.position.toArray(),state:e.state})),modelState,nextDoor:nextDoorTarget(),arrow:missionArrow?.visible?missionArrow.userData.target:null,signs:interactions.filter(p=>p.kind==='door').map(p=>p.title),pixelRatio:renderer.getPixelRatio()}),fixture(event,id){progress=new Progress();while(progress.current&&expected()!==event)progress.accept(expected());roof=false;checkpoint=id;changeRoom(id);resume();},place(x,y,z){player.position.set(x,y,z);vy=0;},point(event){const p=interactions.find(p=>p.event===event||p.target===event);if(!p)return null;player.position.copy(p.pos);player.position.y-=p.kind==='door'?1:0;if(p.kind==='door')player.position.addScaledVector(p.inward,1.5);else player.position.z+=1.1;vy=0;return p.title;},strikeAt(id){const e=zombies.find(z=>z.id===id);if(!e)return false;player.position.copy(e.node.position).add(new T.Vector3(0,0,1.3));facing.set(0,0,-1);player.rotation.y=0;return true;},setCamera(a){yaw=a;},save,read:savedData,step,attack,visit:(id,from)=>changeRoom(id,from),model:()=>originalCastle,async original(){lite=false;const m=await loadCastle();if(m&&room==='outside'){world.remove(fallbackCastle);world.add(m);}return !!m;},collision:()=>({solids:solids.length,floors:floors.length,doorCount:interactions.filter(p=>p.kind==='door').length,support:supportAt(player.position.x,player.position.z,player.position.y+.3),spawnBlocked:solids.some(s=>overlap(s,player.position.x,player.position.z))})};
