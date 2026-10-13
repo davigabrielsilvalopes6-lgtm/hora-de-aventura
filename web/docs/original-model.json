@@ -1,9 +1,19 @@
 {
-  "source": "assets/models/castle/candy_kingdom_castle.glb",
+  "source": "User upload candy_kingdom_castle.zip / candy_kingdom_castle.glb",
   "copy": "web/public/assets/castle.glb",
   "unchanged": true,
-  "sha256": "253a4e960957e5bb8713f347bedb8aac936aac9437673db82d4f5bfd1b74d0bf",
-  "meshes_verified_in_browser": 374,
+  "sha256": "f3fd5d7399247c922770fc061127c5f0340b61467eada662ddfd3191f9db21e8",
+  "bytes": 38321956,
+  "meshes": 374,
+  "triangles": 1012771,
+  "materials": 43,
+  "textures": 0,
   "license": "CC BY 4.0",
-  "author": "Kenny Park"
+  "author": "Kenny Park",
+  "runtime_changes": [
+    "Uniform scale 100",
+    "Existing campaign placement (0,-1,-70)",
+    "Metallic factor zero for cartoon lighting; original color, roughness, transparency and emission retained"
+  ],
+  "previous_glb_preserved_in_commit": "93d79377ea2abfb17a69c17ffcc2224ab118ed4e"
 }

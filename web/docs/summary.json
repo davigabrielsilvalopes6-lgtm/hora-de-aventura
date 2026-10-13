@@ -28,11 +28,11 @@
   "browser": "154.0.8037.57",
   "original_glb_meshes": 374,
   "combat_attack_and_strike_unchanged": true,
-  "original_castle_unchanged": true,
+  "original_castle_unchanged": false,
   "screenshots_are_real": true,
   "pages_deployment_verified": false,
   "public_game_url": "https://davigabrielsilvalopes6-lgtm.github.io/hora-de-aventura/",
-  "html_sha256": "98ac1b15631bd55dbb18ff80891c77dcc59f9bb25b272c7dc3959274bced215f",
+  "html_sha256": "fe694ee6480004ed174bab2d89a25491bec58d7c9f62da162a1b09fcacaaabcc",
   "rig_direction_revision": {
     "base_commit": "d47e98569cdb41b977a1228c52d67cea68fdb8d2",
     "old_gait_test_failed": true,
@@ -47,5 +47,17 @@
       "gait"
     ],
     "full_campaign_rerun": false
+  },
+  "uploaded_castle_file_unchanged": true,
+  "castle_integration": {
+    "sha256": "f3fd5d7399247c922770fc061127c5f0340b61467eada662ddfd3191f9db21e8",
+    "bytes": 38321956,
+    "meshes": 374,
+    "materials": 43,
+    "preview_views": 4,
+    "general_browser_regression_passed": true,
+    "campaign_physics_combat_graph_unchanged": true,
+    "previous_model_in_git_history": "93d79377ea2abfb17a69c17ffcc2224ab118ed4e",
+    "screenshots_are_real": true
   }
 }

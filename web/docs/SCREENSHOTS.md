@@ -31,3 +31,15 @@ Vistas exportadas do GLB, reais: [frente](finn-animated-front.png), [lado](finn-
 ### Revisão posterior dos passos
 
 [Finn caminhando na direção correta](finn-walking-forward.png) é captura real da correção do ciclo de marcha. As vistas do GLB e as capturas de Finn/espada foram refeitas. As imagens das missões/cooperativas acima documentam a expansão anterior à revisão do rig; não foram recapturadas todas as missões nesta correção.
+
+
+### Castelo original do ZIP enviado
+
+Estas quatro imagens foram capturadas no renderizador real do jogo, usando **Ver castelo 3D**. São o GLB recebido, não uma reconstrução ou imagem de IA. O painel foi ocultado somente durante a captura para mostrar o modelo inteiro.
+
+- [Frente](castle-upload-front.png)
+- [Lado](castle-upload-side.png)
+- [Trás](castle-upload-back.png)
+- [Aérea](castle-upload-aerial.png)
+
+Todas as quatro vistas foram inspecionadas. Autor e assinatura preservados; licença em `public/assets/CREDITS.md`. A câmera da campanha e as colisões existentes permanecem simplificadas.

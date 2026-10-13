@@ -6,6 +6,8 @@ Jogo 3D de navegador em JavaScript, Three.js e WebGL2. Esta atualização contin
 
 O envio para `main` aciona GitHub Pages. Aguarde a publicação e use Ctrl+F5 se aparecer a versão antiga. Testes locais não comprovam o estado da hospedagem.
 
+No menu, escolha **Ver castelo 3D** para inspecionar o GLB enviado: arraste para girar, use a roda do mouse para aproximar ou escolha Frente/Lado/Trás/Aérea. O mesmo modelo aparece no exterior da campanha com visuais originais.
+
 ## Nesta atualização
 
 - 15 missões principais, investigação, diálogos, puzzles, janela, telhados, defesa e saída rumo à fábrica.

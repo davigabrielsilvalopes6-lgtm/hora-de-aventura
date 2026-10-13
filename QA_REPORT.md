@@ -188,3 +188,27 @@ Push confirmado comprova envio do código, não publicação do Pages. Verifique
 - Evidências: `web/docs/finn-gait-results.json`, `finn-direction-results.json`, `finn-walking-forward.png`, vistas do GLB e capturas de golpe.
 
 Esta revisão não reexecutou a campanha completa: a alteração é no modelo animado, sem mudar progresso, física ou lógica de combate. Os resultados da campanha acima pertencem à bateria da expansão anterior.
+
+
+## Integração do castelo enviado em ZIP
+
+Fonte: anexo `candy_kingdom_castle.zip`, contendo GLB de 38.321.956 bytes. O anexo GLB avulso excedia o limite de transferência de 32 MiB; o ZIP de 11.538.791 bytes permitiu acesso real. O arquivo foi extraído sem executar conteúdo e sua assinatura glTF/metadados foram inspecionados.
+
+O modelo possui 374 malhas, 43 materiais, 1.012.771 triângulos e não depende de imagens externas. Os metadados registram Kenny Park, a origem Sketchfab e licença CC BY 4.0. A cópia em `web/public/assets/castle.glb` é byte a byte igual ao GLB anexado; hash/proveniência em `web/docs/original-model.json`.
+
+O castelo anterior, convertido de USDZ, foi substituído por este GLB direto, preservado no histórico Git em `93d7937`. A emissão de cores original é mantida agora; metalness é ajustado a zero apenas em runtime para a direção cartoon. Não houve edição de geometria ou criação de novos cômodos.
+
+### Testes desta integração
+
+- Build e seis unitários passaram.
+- Dez verificações gerais de navegador e seis de aceitação passaram novamente, incluindo carregar as 374 malhas, combate, plataformas, save/reload e 54 chegadas do grafo.
+- `test:castle` carregou o arquivo real, verificou 43 materiais/emissão, as quatro vistas com posições de câmera distintas, retorno ao menu/campanha, layout móvel e ausência de erros JavaScript.
+- Verificou que inspeção não avança missões nem relógio nem sobrescreve o progresso. O visualizador preserva a escolha de modo leve; sua inspeção carrega o original explicitamente.
+- Fonte de `step()`, `attack()` e `strike()` e o grafo de salas foram comparados ao commit anterior e permaneceram idênticos.
+- Capturas `castle-upload-front/side/back/aerial.png` são renders reais da mesma cena/modelo usado no jogo; todas foram inspecionadas.
+
+### Ajuste encontrado na validação
+
+CASTLE-01 (P3): a primeira tentativa de captura esperava 500 ms fixos entre vistas. No renderizador por software, isso não garantia uma nova imagem e duas posições de câmera foram registradas iguais. O teste falhou. O visualizador foi ajustado para renderizar apenas quando ângulo/zoom/tamanho muda; o teste aguarda um frame efetivamente renderizado e uma posição de câmera diferente. As quatro capturas foram refeitas e verificadas. Não foram apresentadas as capturas iniciais como quatro ângulos válidos.
+
+A presença do GLB não significa colisão precisa ou exploração de cada superfície original. Interiores, plataformas, missões e colisões já existentes foram preservados. Não houve medição de FPS em GPU física nesta integração. O botão **Ver castelo 3D** mostra o original em HTTP(S); o modo leve continua disponível para jogar sem carregar o modelo pesado.

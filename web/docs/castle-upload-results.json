@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "model": {
+    "meshes": 374,
+    "materials": 43,
+    "emissiveMeshes": 309
+  },
+  "views": [
+    {
+      "name": "Frente",
+      "camera": [
+        0.0000022145770870451997,
+        65.40580967189197,
+        133.41222663086003
+      ]
+    },
+    {
+      "name": "Lado",
+      "camera": [
+        133.18045603081663,
+        65.40580967189197,
+        0.23177281462048177
+      ]
+    },
+    {
+      "name": "Trás",
+      "camera": [
+        0.000002214577103355101,
+        65.40580967189197,
+        -132.94868100161906
+      ]
+    },
+    {
+      "name": "Aérea",
+      "camera": [
+        0.0000022145770870451997,
+        148.44868129395348,
+        63.46618078331042
+      ]
+    }
+  ],
+  "checks": [
+    "Real uploaded GLB loads in preview and campaign",
+    "Four real rendered views",
+    "Preview leaves campaign save, progress and playtime intact",
+    "Mobile panel fits",
+    "Menu and new adventure restored",
+    "Existing partial campaign save preserved byte for byte and Continue restored correct objective",
+    "Light-mode preference preserved"
+  ],
+  "errors": []
+}

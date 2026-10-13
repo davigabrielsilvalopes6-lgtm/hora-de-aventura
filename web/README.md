@@ -31,6 +31,7 @@ GAME_URL=http://127.0.0.1:4173/ npm run test:navigation
 GAME_URL=http://127.0.0.1:4173/ npm run test:extras
 GAME_URL=http://127.0.0.1:4173/ npm run test:campaign
 GAME_URL=http://127.0.0.1:4173/ npm run test:window
+GAME_URL=http://127.0.0.1:4173/ npm run test:castle
 GAME_URL=http://127.0.0.1:4173/ npm run test:direction
 npm run test:gait
 ```
@@ -54,3 +55,10 @@ O workflow de GitHub Pages executa build e testes unitários. As suítes gráfic
 [Campanha](docs/CHAPTER_EXPANSION.md) · [Animações](docs/FINN_ANIMATIONS.md) · [QA](../QA_REPORT.md) · [Duração](docs/DURATION_REPORT.md) · [Capturas](docs/SCREENSHOTS.md)
 
 Logs anteriores à expansão permanecem como histórico. `docs/summary.json` e o relatório QA identificam as evidências atuais. Dependências fixadas por lockfile: Three.js 0.180.0, esbuild 0.25.11 e Playwright 1.62.1. Créditos e licenças em `public/assets/`.
+
+
+## GLB enviado e visualizador
+
+O castelo atual é o arquivo original do ZIP enviado, preservado byte a byte. Manifesto: `docs/original-model.json`; créditos: `public/assets/CREDITS.md`. O botão **Ver castelo 3D** carrega o mesmo modelo usado na campanha, com quatro vistas, giro e zoom. Não avança missões nem modifica saves, tempo ou a preferência de modo leve. A versão anterior continua no histórico Git.
+
+Capturas novas em `docs/castle-upload-{front,side,back,aerial}.png`. As adaptações de colisão e os interiores existentes não foram reconstruídos; o GLB não cria, sozinho, novas áreas interiores jogáveis.
