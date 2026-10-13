@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "model": {
+    "count": 374,
+    "name": "CandyKingdomCastleUploaded",
+    "position": [
+      -18,
+      -1,
+      -50
+    ]
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4174/assets/castle.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4174/assets/castle.glb",
+      "status": 200
+    }
+  ],
+  "method": "Light-quality URL; actual campaign automatically loads uploaded GLB, keyboard movement, E through entrance/rooms/princess; fixtures only prepare locations.",
+  "checks": [
+    "No generic castle",
+    "Real GLB loads automatically in campaign",
+    "Finn/Jake real gameplay capture",
+    "Player moves",
+    "Exterior entry connects grand hall, kitchen and lab",
+    "Princess objective advances",
+    "Closed real gate has collision",
+    "Main entrance exit and reentry work",
+    "Model network failure is visible and retry restores real model"
+  ],
+  "errors": []
+}

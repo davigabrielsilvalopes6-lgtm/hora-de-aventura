@@ -18,7 +18,8 @@
     "test:window": "node tests/window-preview.cjs",
     "test:direction": "node tests/finn-direction.cjs",
     "test:gait": "node tests/finn-gait.cjs",
-    "test:castle": "node tests/castle-upload.cjs"
+    "test:castle": "node tests/castle-upload.cjs",
+    "test:castle-campaign": "node tests/castle-campaign.cjs"
   },
   "dependencies": {
     "three": "0.180.0"

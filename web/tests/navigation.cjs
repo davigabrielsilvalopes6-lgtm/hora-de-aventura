@@ -6,7 +6,7 @@ const fs=require('node:fs');
  try{
   const page=await browser.newPage({viewport:{width:1280,height:720},deviceScaleFactor:2});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto((process.env.GAME_URL||'http://127.0.0.1:4173/')+'?qa=1&lite=1');
+  await page.goto((process.env.GAME_URL||'http://127.0.0.1:4173/')+'?qa=1');
   await page.getByRole('button',{name:'Nova aventura',exact:true}).click();
   await page.getByRole('button',{name:'Continuar',exact:true}).click();
   const state=()=>page.evaluate(()=>__qa.state());

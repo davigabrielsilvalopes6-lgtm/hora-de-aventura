@@ -15,9 +15,9 @@
 - 374 malhas, 1.012.771 triângulos, 43 materiais, sem imagens de textura externas.
 - Gerador do arquivo: Sketchfab-12.68.0. Não houve conversão nem remoção de geometria neste arquivo.
 
-**Adaptações em runtime:** escala uniforme 100×, posição de cenário existente, fator metálico zerado para iluminação cartoon; cores-base, emissão original, rugosidade e transparência preservadas. A apresentação de inspeção centraliza o mesmo modelo, permite girar/zoom e não altera o save. A assinatura 3D do autor foi preservada.
+**Adaptações em runtime:** escala uniforme 100×, posição (-18, -1, -50) no cenário da campanha, fator metálico zerado para iluminação cartoon; cores-base, emissão original, rugosidade e transparência preservadas. A apresentação de inspeção centraliza o mesmo modelo, permite girar/zoom e não altera o save. A assinatura 3D do autor foi preservada.
 
-Os interiores, plataformas, paredes de colisão e missões do jogo continuam sendo adaptações. Não se deve considerar toda a geometria externa explorável só porque está visível. O modo leve permanece uma representação própria identificada, separada do GLB.
+Os interiores, plataformas, paredes de colisão e missões do jogo continuam sendo adaptações. Não se deve considerar toda a geometria externa explorável só porque está visível. A qualidade econômica usa o mesmo GLB com menor resolução. A representação genérica anterior foi removida.
 
 ## Versão anterior preservada
 

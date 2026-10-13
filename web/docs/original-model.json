@@ -12,8 +12,10 @@
   "author": "Kenny Park",
   "runtime_changes": [
     "Uniform scale 100",
-    "Existing campaign placement (0,-1,-70)",
-    "Metallic factor zero for cartoon lighting; original color, roughness, transparency and emission retained"
+    "Campaign placement (-18,-1,-50)",
+    "Main gate connects existing grand hall; service entry connects laboratory",
+    "Metallic factor zero; original color, emission, roughness and transparency retained",
+    "Same detailed GLB in economical and detailed quality; no generic castle fallback"
   ],
   "previous_glb_preserved_in_commit": "93d79377ea2abfb17a69c17ffcc2224ab118ed4e"
 }

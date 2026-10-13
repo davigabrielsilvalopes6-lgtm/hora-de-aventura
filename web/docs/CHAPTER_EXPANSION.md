@@ -1,6 +1,6 @@
 # Capítulo 1 — expansão do surto
 
-História original de fã para a campanha de navegador. Fórmula e mecanismos são fictícios, não conteúdo canônico. Castelo e setores existentes foram aproveitados; o GLB externo não foi reconstruído nem modificado.
+História original de fã para a campanha de navegador. Fórmula e mecanismos são fictícios, não conteúdo canônico. Castelo e setores existentes foram aproveitados; o arquivo GLB externo não foi reconstruído nem modificado. Seu posicionamento e carregamento na campanha foram ajustados, eliminando o castelo genérico.
 
 ## Missões implementadas
 

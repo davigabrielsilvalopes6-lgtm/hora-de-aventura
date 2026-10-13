@@ -43,3 +43,10 @@ Estas quatro imagens foram capturadas no renderizador real do jogo, usando **Ver
 - [Aérea](castle-upload-aerial.png)
 
 Todas as quatro vistas foram inspecionadas. Autor e assinatura preservados; licença em `public/assets/CREDITS.md`. A câmera da campanha e as colisões existentes permanecem simplificadas.
+
+
+### Campanha com o castelo real
+
+[Vista frontal durante a campanha, com Finn e Jake](castle-campaign-finn-jake.png). Captura real do exterior, sem usar o visualizador isolado. A figura mostra também passarelas de serviço mantidas para as missões. A construção genérica antiga foi removida; o mesmo GLB é usado em ambas as qualidades.
+
+Posições de cena e respostas HTTP estão em `castle-campaign-results.json`. As outras imagens anteriores são históricas e não comprovam a substituição nesta revisão.

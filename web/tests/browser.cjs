@@ -38,11 +38,14 @@ const fs=require('fs');
      if(Math.abs(dx)>.25)dispatchEvent(new KeyboardEvent('keydown',{code:dx>0?'KeyD':'KeyA'}));
      if(Math.abs(dz)>.25)dispatchEvent(new KeyboardEvent('keydown',{code:dz>0?'KeyS':'KeyW'}));
      if(jump){dispatchEvent(new KeyboardEvent('keydown',{code:'Space'}));dispatchEvent(new KeyboardEvent('keyup',{code:'Space'}));}
+     // Imported geometry can make software rendering much slower than wall-time polling.
+     // Advance the real fixed-step physics while keeping keyboard input and collisions.
+     for(let n=0;n<6;n++)__qa.step(1/60);
     },{dx,dz,jump});await wait(100);
    }
    if(!reached)throw Error('Unreachable platform '+[x,z]+' at '+JSON.stringify((await state()).position));
    await page.evaluate(()=>{for(const code of ['KeyW','KeyS','KeyA','KeyD'])dispatchEvent(new KeyboardEvent('keyup',{code}));});
-   await page.waitForFunction(y=>{const s=__qa.state();return s.grounded&&Math.abs(s.position[1]-y)<.15;},y,{timeout:10000});if((await state()).event==='reunite')await action('reunite');
+   await page.evaluate(y=>{for(let n=0;n<180;n++){const s=__qa.state();if(s.grounded&&Math.abs(s.position[1]-y)<.15)return;__qa.step(1/60);}},y);const landed=await state();if(!landed.grounded||Math.abs(landed.position[1]-y)>.15)throw Error('Wrong platform landing '+JSON.stringify(landed));if((await state()).event==='reunite')await action('reunite');
   }
   for(const k of ['KeyW','KeyS','KeyA','KeyD'])await page.keyboard.up(k);
   if((await state()).event!=='ladder_prepare')throw Error('Roof triggers failed');if(jumps<1)throw Error('Jump not exercised');

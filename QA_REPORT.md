@@ -212,3 +212,31 @@ O castelo anterior, convertido de USDZ, foi substituído por este GLB direto, pr
 CASTLE-01 (P3): a primeira tentativa de captura esperava 500 ms fixos entre vistas. No renderizador por software, isso não garantia uma nova imagem e duas posições de câmera foram registradas iguais. O teste falhou. O visualizador foi ajustado para renderizar apenas quando ângulo/zoom/tamanho muda; o teste aguarda um frame efetivamente renderizado e uma posição de câmera diferente. As quatro capturas foram refeitas e verificadas. Não foram apresentadas as capturas iniciais como quatro ângulos válidos.
 
 A presença do GLB não significa colisão precisa ou exploração de cada superfície original. Interiores, plataformas, missões e colisões já existentes foram preservados. Não houve medição de FPS em GPU física nesta integração. O botão **Ver castelo 3D** mostra o original em HTTP(S); o modo leve continua disponível para jogar sem carregar o modelo pesado.
+
+
+## Correção: castelo genérico ainda aparecia na campanha
+
+**CASTLE-CAMPAIGN-02 — P1 — Corrigido e testado.** Reprodução: abrir a campanha com qualidade leve/econômica e sair para o exterior; `buildOutside()` criava `lightCastle()`, e o loader podia não carregar o GLB. Esperado: o castelo detalhado enviado aparecer durante o jogo, além do visualizador. Observado: bloco rosa com cilindros/cones.
+
+Causa: geração explícita do fallback e condicionamento de `loadCastle()` à variável `lite`. Correção em `web/src/main.js`: remover `lightCastle()`/fallback, carregar o GLB sempre no exterior, usar economia apenas para resolução e mostrar falha/retry quando necessário. Modelo usado: `web/public/assets/castle.glb`, mesma cópia do ZIP; nenhuma geometria do arquivo foi alterada.
+
+A integração também ajustou a posição para `(-18,-1,-50)`, ligou a porta real ao grande salão e o acesso de serviço ao laboratório. O teste revelou que a porta externa inicialmente tinha a cota de interação 0, diferente das portas internas (1); isso colocava a fixture abaixo do piso. A cota foi corrigida, o percurso foi refeito com E e os pontos de chegada foram verificados. Foi acrescentado volume de colisão à porta fechada; caminhada não atravessa a fachada e E entra no salão. A saída e reentrada foram testadas.
+
+**CASTLE-CAMPAIGN-03 — P3 — Corrigido e testado.** A primeira posição/captura deixava passarelas e uma casa na frente do modelo. O castelo foi colocado ao lado da rota de serviço; decoração provisória redundante na aproximação foi retirada. Todas as malhas/decorativos do GLB permanecem presentes. A captura final `web/docs/castle-campaign-finn-jake.png` foi inspecionada: o modelo real aparece com Finn e Jake no exterior da campanha.
+
+### Revalidação concluída
+
+- Build e 6 unitários passaram.
+- 10 verificações gerais de navegador + 6 de aceitação passaram; inclui diálogos, combate, janela/sete plataformas, save/reload, pausa, toque e 26 setores/54 chegadas internas.
+- 4 trajetos físicos de Jake passaram: duto, ponte, escada e gigante.
+- 15 missões passaram na suíte de progressão, com 70 eventos, puzzles e ondas finitas. Fixtures preparam etapas; não equivale a partida humana contínua.
+- Visualizador: 374 malhas, 43 materiais, quatro vistas reais, preservação de save e preferência gráfica, retorno à campanha.
+- Campanha: URL com `lite=1` carregou automaticamente o GLB com HTTP 200 local; o bloco genérico antigo de 18×18×14 foi procurado na cena e não estava presente. Entrada, laboratório, missão da princesa, colisão, saída e reentrada passaram.
+- Falha de rede simulada: abriu aviso, não criou substituto genérico; `Tentar novamente` carregou o GLB e retornou ao controle do jogador.
+- Navegação e alta densidade de pixels passaram. `step()`, `attack()` e `strike()` permanecem iguais ao commit base `6d61241`.
+
+### Limitação do ambiente encontrada nos testes
+
+Com o GLB completo no exterior, o renderizador SwiftShader ficou lento o suficiente para invalidar esperas fixas por milissegundos. O teste de plataformas falhou inicialmente por não ter avançado física suficiente; foi corrigido para usar passos reais da física e verificar a altura final, sem teleportar no percurso ou alterar o jogador. A captura de uma habilidade também excedeu 30 s. Vistas estáticas em pausa/menu passaram a evitar redesenhos repetidos, e capturas pesadas pausam a simulação e ocultam somente a interface de pausa. A geometria não é ocultada nem substituída. Os testes originais foram reexecutados e passaram após esses ajustes.
+
+Não foram medidos FPS numa GPU física nem testado Windows nesta revisão. Colisões precisas de toda a arquitetura original continuam pendentes; a porta e os percursos essenciais têm volumes simplificados. A rota de serviço existente continua na lateral. A publicação usa o workflow de Pages já configurado; envio Git confirmado não comprova deploy final nem teste do site público. Veja `web/docs/CASTLE_CAMPAIGN_REPLACEMENT.md` para arquivos, caminhos e detalhes.

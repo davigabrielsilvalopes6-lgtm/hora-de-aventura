@@ -12,7 +12,7 @@ npm run build
 npm start
 ```
 
-O servidor mostra o endereço local. `dist/` é a distribuição estática; não precisa de backend. O HTML incorpora Three.js e o Finn animado. Em HTTP(S), o castelo original é carregado de `assets/castle.glb`; com `?lite=1`, usa-se a representação leve, identificada como aproximada. O GLB externo original foi preservado.
+O servidor mostra o endereço local. `dist/` é a distribuição estática; não precisa de backend. O HTML incorpora Three.js e o Finn animado. Em HTTP(S), o castelo original é carregado de `assets/castle.glb`; com `?lite=1`, reduz-se a resolução de renderização, mantendo o mesmo GLB real. A construção genérica de cilindros/cubos foi removida.
 
 A execução offline do HTML foi validada no Chromium. A política deste ambiente bloqueia navegação `file://`; abrir o arquivo diretamente no Windows ainda precisa de teste. O servidor local é apenas para desenvolvimento.
 
@@ -32,6 +32,7 @@ GAME_URL=http://127.0.0.1:4173/ npm run test:extras
 GAME_URL=http://127.0.0.1:4173/ npm run test:campaign
 GAME_URL=http://127.0.0.1:4173/ npm run test:window
 GAME_URL=http://127.0.0.1:4173/ npm run test:castle
+GAME_URL=http://127.0.0.1:4173/ npm run test:castle-campaign
 GAME_URL=http://127.0.0.1:4173/ npm run test:direction
 npm run test:gait
 ```
@@ -59,6 +60,17 @@ Logs anteriores à expansão permanecem como histórico. `docs/summary.json` e o
 
 ## GLB enviado e visualizador
 
-O castelo atual é o arquivo original do ZIP enviado, preservado byte a byte. Manifesto: `docs/original-model.json`; créditos: `public/assets/CREDITS.md`. O botão **Ver castelo 3D** carrega o mesmo modelo usado na campanha, com quatro vistas, giro e zoom. Não avança missões nem modifica saves, tempo ou a preferência de modo leve. A versão anterior continua no histórico Git.
+O castelo atual é o arquivo original do ZIP enviado, preservado byte a byte. Manifesto: `docs/original-model.json`; créditos: `public/assets/CREDITS.md`. O botão **Ver castelo 3D** carrega o mesmo modelo usado na campanha, com quatro vistas, giro e zoom. Não avança missões nem modifica saves, tempo ou a preferência de qualidade econômica. A versão anterior continua no histórico Git.
 
 Capturas novas em `docs/castle-upload-{front,side,back,aerial}.png`. As adaptações de colisão e os interiores existentes não foram reconstruídos; o GLB não cria, sozinho, novas áreas interiores jogáveis.
+
+
+## Substituição na campanha
+
+O modelo real agora é carregado obrigatoriamente ao visitar o exterior, inclusive em qualidade econômica. `lightCastle()` e seu fallback foram removidos de `src/main.js`. Falha de rede gera aviso e botão de tentar novamente, sem inventar um castelo substituto.
+
+A posição é `(-18, -1, -50)` com escala 100×; a fachada fica acessível ao lado das passarelas existentes. A entrada em `(-18, 1, -16)` liga ao grande salão, e o acesso de serviço em `(-21, 0, -16)` retorna ao laboratório. A saída do salão chega perto dessa fachada. Um volume de colisão simplificado protege a porta fechada. As demais colisões essenciais, missões e interiores foram preservados.
+
+Em pausa/menu/configurações, vistas estáticas deixam de ser redesenhadas repetidamente. Capturas de testes pesadas podem ser feitas com a simulação pausada e a interface de pausa ocultada; nenhuma geometria é escondida. O renderizador por software expôs limitações de esperas por milissegundos: as travessias usam teclado e passos reais da física, sem teleportar durante o percurso. Isso não mede FPS em GPU física.
+
+O exterior com GLB requer acesso aos recursos por HTTP(S). O teste de HTML sem rede valida somente as áreas internas embutidas; a campanha externa não usa mais um castelo fictício offline.

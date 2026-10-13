@@ -32,7 +32,7 @@
   "screenshots_are_real": true,
   "pages_deployment_verified": false,
   "public_game_url": "https://davigabrielsilvalopes6-lgtm.github.io/hora-de-aventura/",
-  "html_sha256": "fe694ee6480004ed174bab2d89a25491bec58d7c9f62da162a1b09fcacaaabcc",
+  "html_sha256": "6cb78a738f5bc7c5592441d6e545dc97a774c7b583691e82afa31b77f5b09958",
   "rig_direction_revision": {
     "base_commit": "d47e98569cdb41b977a1228c52d67cea68fdb8d2",
     "old_gait_test_failed": true,
@@ -59,5 +59,39 @@
     "campaign_physics_combat_graph_unchanged": true,
     "previous_model_in_git_history": "93d79377ea2abfb17a69c17ffcc2224ab118ed4e",
     "screenshots_are_real": true
+  },
+  "castle_campaign_replacement": {
+    "base_commit": "6d612410b5edc0659e3cf1d716ee906def9d164a",
+    "generic_castle_removed": true,
+    "real_model_loads_in_economical_mode": true,
+    "position": [
+      -18,
+      -1,
+      -50
+    ],
+    "main_gate": [
+      -18,
+      1,
+      -16
+    ],
+    "service_entry": [
+      -21,
+      0,
+      -16
+    ],
+    "unit_tests_passed": 6,
+    "general_browser_checks_passed": 16,
+    "physical_abilities_passed": 4,
+    "ordered_missions_verified": 15,
+    "specialized_suites_passed": [
+      "castle",
+      "castle-campaign",
+      "navigation"
+    ],
+    "network_failure_retry_verified": true,
+    "simulation_code_and_combat_unchanged": true,
+    "real_campaign_screenshot": "castle-campaign-finn-jake.png",
+    "gpu_fps_measured": false,
+    "public_site_deployment_verified": false
   }
 }

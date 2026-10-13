@@ -6,7 +6,7 @@ Jogo 3D de navegador em JavaScript, Three.js e WebGL2. Esta atualização contin
 
 O envio para `main` aciona GitHub Pages. Aguarde a publicação e use Ctrl+F5 se aparecer a versão antiga. Testes locais não comprovam o estado da hospedagem.
 
-No menu, escolha **Ver castelo 3D** para inspecionar o GLB enviado: arraste para girar, use a roda do mouse para aproximar ou escolha Frente/Lado/Trás/Aérea. O mesmo modelo aparece no exterior da campanha com visuais originais.
+No menu, escolha **Ver castelo 3D** para inspecionar o GLB enviado: arraste para girar, use a roda do mouse para aproximar ou escolha Frente/Lado/Trás/Aérea. O modelo real aparece automaticamente no exterior da campanha, inclusive em qualidade econômica.
 
 ## Nesta atualização
 
@@ -49,7 +49,7 @@ npm run test:unit
 npm start
 ```
 
-[Instruções e testes](web/README.md) · [Campanha](web/docs/CHAPTER_EXPANSION.md) · [Animações](web/docs/FINN_ANIMATIONS.md) · [Relatório QA](QA_REPORT.md) · [Capturas reais](web/docs/SCREENSHOTS.md)
+[Instruções e testes](web/README.md) · [Campanha](web/docs/CHAPTER_EXPANSION.md) · [Animações](web/docs/FINN_ANIMATIONS.md) · [Relatório QA](QA_REPORT.md) · [Capturas reais](web/docs/SCREENSHOTS.md) · [Correção do castelo na campanha](web/docs/CASTLE_CAMPAIGN_REPLACEMENT.md)
 
 [Finn animado GLB](web/public/assets/characters/finn-animated.glb) · [Finn estático GLB](web/public/assets/characters/finn.glb) · [Créditos do castelo](web/public/assets/CREDITS.md) · [Animações CC0 de Quaternius](web/public/assets/animations/README.md)
 

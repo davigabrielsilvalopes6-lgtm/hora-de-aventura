@@ -33,7 +33,7 @@ const path=require('node:path');
   const existingSave=await page.evaluate(()=>localStorage.getItem('reino-doce-browser-v2'));
   await page.getByRole('button',{name:'Ver castelo 3D',exact:true}).click();await page.waitForFunction(()=>__qa.state().mode==='castle-preview'&&__qa.state().camera[2]>80,null,{timeout:60000});
   assert.equal(await page.evaluate(()=>localStorage.getItem('reino-doce-browser-v2')),existingSave,'Existing partial campaign save preserved byte for byte');
-  await page.keyboard.press('Escape');assert.equal(await page.getByRole('button',{name:'Visuais: leves',exact:true}).count(),1,'Preview preserves light-mode preference');
+  await page.keyboard.press('Escape');assert.equal(await page.getByRole('button',{name:'Visuais: econômicos',exact:true}).count(),1,'Preview preserves light-mode preference');
   await page.getByRole('button',{name:'Continuar',exact:true}).click();assert.equal((await page.evaluate(()=>__qa.state())).event,'inspect_flask');assert.equal((await page.evaluate(()=>__qa.state())).room,'laboratory');
   await page.evaluate(()=>__qa.visit('outside'));assert.equal(await page.evaluate(()=>__qa.original()),true);await page.waitForFunction(()=>!!__qa.model()?.parent);
   assert.equal((await page.evaluate(()=>__qa.state())).mode,'game');assert.deepEqual(errors,[]);

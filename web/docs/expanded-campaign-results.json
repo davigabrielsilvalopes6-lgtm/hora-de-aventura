@@ -1,357 +1,357 @@
 {
   "passed": true,
   "method": "Room/position fixtures with actual E, UI puzzle choices and J combat. Physical traversal tested separately; not a first human playthrough.",
-  "wallSeconds": 62.054,
+  "wallSeconds": 106.281,
   "events": [
     {
       "event": "guard_intro",
       "quest": 1,
-      "wallSeconds": 3.872
+      "wallSeconds": 5.291
     },
     {
       "event": "princess",
       "quest": 1,
-      "wallSeconds": 4.509
+      "wallSeconds": 6.14
     },
     {
       "event": "inspect_console",
       "quest": 1,
-      "wallSeconds": 5.172
+      "wallSeconds": 7.111
     },
     {
       "event": "inspect_flask",
       "quest": 1,
-      "wallSeconds": 5.675
+      "wallSeconds": 7.907
     },
     {
       "event": "inspect_notes",
       "quest": 1,
-      "wallSeconds": 6.227
+      "wallSeconds": 8.902
     },
     {
       "event": "store_find",
       "quest": 2,
-      "wallSeconds": 6.66
+      "wallSeconds": 9.326
     },
     {
       "event": "storage_button",
       "quest": 2,
-      "wallSeconds": 7.11
+      "wallSeconds": 9.784
     },
     {
       "event": "ingredient",
       "quest": 2,
-      "wallSeconds": 8.219
+      "wallSeconds": 11.06
     },
     {
       "event": "ingredient_report",
       "quest": 2,
-      "wallSeconds": 8.638
+      "wallSeconds": 11.451
     },
     {
       "event": "witness_guard",
       "quest": 3,
-      "wallSeconds": 9.047
+      "wallSeconds": 12.601
     },
     {
       "event": "witness_patient",
       "quest": 3,
-      "wallSeconds": 9.454
+      "wallSeconds": 13.55
     },
     {
       "event": "witness_nurse",
       "quest": 3,
-      "wallSeconds": 9.839
+      "wallSeconds": 14.291
     },
     {
       "event": "office_clue",
       "quest": 3,
-      "wallSeconds": 10.272
+      "wallSeconds": 14.879
     },
     {
       "event": "report",
       "quest": 3,
-      "wallSeconds": 10.637
+      "wallSeconds": 15.446
     },
     {
       "event": "alarm",
       "quest": 4,
-      "wallSeconds": 11.039
+      "wallSeconds": 16.161
     },
     {
       "event": "guard",
       "quest": 4,
-      "wallSeconds": 11.539
+      "wallSeconds": 16.875
     },
     {
       "event": "seal_entry",
       "quest": 4,
-      "wallSeconds": 12.019
+      "wallSeconds": 17.58
     },
     {
       "event": "hall_kill",
       "quest": 4,
-      "wallSeconds": 17.117
+      "wallSeconds": 23.909
     },
     {
       "event": "lab_kill",
       "quest": 4,
-      "wallSeconds": 19.724
+      "wallSeconds": 28.271
     },
     {
       "event": "window_panel",
       "quest": 5,
-      "wallSeconds": 20.112
+      "wallSeconds": 29.019
     },
     {
       "event": "window",
       "quest": 5,
-      "wallSeconds": 20.528
+      "wallSeconds": 30.668
     },
     {
       "event": "landing",
       "quest": 5,
-      "wallSeconds": 20.63
+      "wallSeconds": 30.752
     },
     {
       "event": "reunite",
       "quest": 5,
-      "wallSeconds": 21.019
+      "wallSeconds": 32.289
     },
     {
       "event": "roof",
       "quest": 6,
-      "wallSeconds": 21.129
+      "wallSeconds": 32.398
     },
     {
       "event": "ladder_prepare",
       "quest": 6,
-      "wallSeconds": 21.547
+      "wallSeconds": 33.292
     },
     {
       "event": "tower_console",
       "quest": 6,
-      "wallSeconds": 21.91
+      "wallSeconds": 33.75
     },
     {
       "event": "transmitter",
       "quest": 6,
-      "wallSeconds": 23.86
+      "wallSeconds": 35.795
     },
     {
       "event": "court_arrival",
       "quest": 6,
-      "wallSeconds": 24.158
+      "wallSeconds": 36.501
     },
     {
       "event": "duct_find",
       "quest": 7,
-      "wallSeconds": 24.523
+      "wallSeconds": 37.551
     },
     {
       "event": "duct_lever",
       "quest": 7,
-      "wallSeconds": 25.039
+      "wallSeconds": 38.139
     },
     {
       "event": "duct_exit",
       "quest": 7,
-      "wallSeconds": 25.604
+      "wallSeconds": 39.075
     },
     {
       "event": "service_unlock",
       "quest": 7,
-      "wallSeconds": 25.964
+      "wallSeconds": 39.786
     },
     {
       "event": "formula_brief",
       "quest": 8,
-      "wallSeconds": 26.36
+      "wallSeconds": 40.294
     },
     {
       "event": "formula_record",
       "quest": 8,
-      "wallSeconds": 26.813
+      "wallSeconds": 41.059
     },
     {
       "event": "dungeon_riddle",
       "quest": 9,
-      "wallSeconds": 27.227
+      "wallSeconds": 41.905
     },
     {
       "event": "riddle",
       "quest": 9,
-      "wallSeconds": 28.659
+      "wallSeconds": 43.976
     },
     {
       "event": "bridge_prepare",
       "quest": 9,
-      "wallSeconds": 29.155
+      "wallSeconds": 44.792
     },
     {
       "event": "crystal",
       "quest": 9,
-      "wallSeconds": 29.716
+      "wallSeconds": 45.204
     },
     {
       "event": "crystal_report",
       "quest": 9,
-      "wallSeconds": 31.323
+      "wallSeconds": 46.49
     },
     {
       "event": "greenhouse_find",
       "quest": 10,
-      "wallSeconds": 31.756
+      "wallSeconds": 46.95
     },
     {
       "event": "plant_note",
       "quest": 10,
-      "wallSeconds": 32.245
+      "wallSeconds": 47.364
     },
     {
       "event": "plant_select",
       "quest": 10,
-      "wallSeconds": 32.949
+      "wallSeconds": 49.348
     },
     {
       "event": "giant_prepare",
       "quest": 10,
-      "wallSeconds": 33.346
+      "wallSeconds": 50.094
     },
     {
       "event": "essence",
       "quest": 10,
-      "wallSeconds": 33.713
+      "wallSeconds": 50.65
     },
     {
       "event": "essence_report",
       "quest": 10,
-      "wallSeconds": 34.81
+      "wallSeconds": 52.813
     },
     {
       "event": "secret_clue",
       "quest": 11,
-      "wallSeconds": 35.252
+      "wallSeconds": 53.614
     },
     {
       "event": "secret_find",
       "quest": 11,
-      "wallSeconds": 35.788
+      "wallSeconds": 54.275
     },
     {
       "event": "secret_lever",
       "quest": 11,
-      "wallSeconds": 36.22
+      "wallSeconds": 55.293
     },
     {
       "event": "secret_door",
       "quest": 11,
-      "wallSeconds": 36.66
+      "wallSeconds": 55.923
     },
     {
       "event": "coop_plate",
       "quest": 11,
-      "wallSeconds": 37.047
+      "wallSeconds": 56.551
     },
     {
       "event": "gelatin",
       "quest": 11,
-      "wallSeconds": 38.32
+      "wallSeconds": 57.729
     },
     {
       "event": "place_crystal",
       "quest": 12,
-      "wallSeconds": 38.716
+      "wallSeconds": 58.108
     },
     {
       "event": "place_essence",
       "quest": 12,
-      "wallSeconds": 39.152
+      "wallSeconds": 58.528
     },
     {
       "event": "place_gelatin",
       "quest": 12,
-      "wallSeconds": 39.587
+      "wallSeconds": 58.902
     },
     {
       "event": "puzzle",
       "quest": 12,
-      "wallSeconds": 39.987
+      "wallSeconds": 59.305
     },
     {
       "event": "dials",
       "quest": 12,
-      "wallSeconds": 41.943
+      "wallSeconds": 64.104
     },
     {
       "event": "cure_activate",
       "quest": 12,
-      "wallSeconds": 42.335
+      "wallSeconds": 64.877
     },
     {
       "event": "cure_result",
       "quest": 13,
-      "wallSeconds": 43.53
+      "wallSeconds": 67.514
     },
     {
       "event": "revelation",
       "quest": 13,
-      "wallSeconds": 43.948
+      "wallSeconds": 68.29
     },
     {
       "event": "document",
       "quest": 13,
-      "wallSeconds": 44.345
+      "wallSeconds": 68.882
     },
     {
       "event": "sample",
       "quest": 13,
-      "wallSeconds": 44.747
+      "wallSeconds": 69.288
     },
     {
       "event": "court_kill",
       "quest": 14,
-      "wallSeconds": 48.386
+      "wallSeconds": 74.403
     },
     {
       "event": "rescue",
       "quest": 14,
-      "wallSeconds": 48.714
+      "wallSeconds": 75.126
     },
     {
       "event": "key",
       "quest": 14,
-      "wallSeconds": 49.053
+      "wallSeconds": 75.774
     },
     {
       "event": "reinforce",
       "quest": 14,
-      "wallSeconds": 49.411
+      "wallSeconds": 76.376
     },
     {
       "event": "gate",
       "quest": 14,
-      "wallSeconds": 49.64
+      "wallSeconds": 76.708
     },
     {
       "event": "defense_kill",
       "quest": 14,
-      "wallSeconds": 59.712
+      "wallSeconds": 104.088
     },
     {
       "event": "debrief",
       "quest": 14,
-      "wallSeconds": 60.224
+      "wallSeconds": 104.86
     },
     {
       "event": "factory",
       "quest": 15,
-      "wallSeconds": 60.771
+      "wallSeconds": 105.065
     },
     {
       "event": "factory_exit",
       "quest": 15,
-      "wallSeconds": 61.317
+      "wallSeconds": 105.451
     }
   ]
 }
