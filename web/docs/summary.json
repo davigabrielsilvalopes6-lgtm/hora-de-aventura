@@ -32,5 +32,20 @@
   "screenshots_are_real": true,
   "pages_deployment_verified": false,
   "public_game_url": "https://davigabrielsilvalopes6-lgtm.github.io/hora-de-aventura/",
-  "html_sha256": "36dfa2bfc5f5fb4421610390adf0950f534028ce4a5264c66202d902ada7aae4"
+  "html_sha256": "98ac1b15631bd55dbb18ff80891c77dcc59f9bb25b272c7dc3959274bced215f",
+  "rig_direction_revision": {
+    "base_commit": "d47e98569cdb41b977a1228c52d67cea68fdb8d2",
+    "old_gait_test_failed": true,
+    "old_walk_contact_along_face": 0.3668069354408139,
+    "direction_and_gait_passed": true,
+    "related_suites_rerun": [
+      "unit",
+      "finn",
+      "animation-states",
+      "cooperative",
+      "direction",
+      "gait"
+    ],
+    "full_campaign_rerun": false
+  }
 }

@@ -26,3 +26,8 @@ Os modos leves visíveis nas áreas externas são representações aproximadas i
 Foram inspecionadas imagens de repouso, ponte, escada, gigante, botão, cura, janela, saída e toque. Rótulos grandes e anéis que cobriam Finn foram corrigidos e recapturados. Algumas imagens deixam notificações e HUD visíveis para evidenciar o estado real.
 
 Vistas exportadas do GLB, reais: [frente](finn-animated-front.png), [lado](finn-animated-side.png), [costas](finn-animated-back.png). Dados de importação em `finn-animated-export.json`. `ladder-inspection.png` é diagnóstico do patamar, não uma aprovação de arte completa. Outros logs/capturas anteriores permanecem históricos.
+
+
+### Revisão posterior dos passos
+
+[Finn caminhando na direção correta](finn-walking-forward.png) é captura real da correção do ciclo de marcha. As vistas do GLB e as capturas de Finn/espada foram refeitas. As imagens das missões/cooperativas acima documentam a expansão anterior à revisão do rig; não foram recapturadas todas as missões nesta correção.

@@ -34,3 +34,14 @@ Testes por teclado cobrem Idle → Walk → Run → Idle, parede, salto, queda, 
 `finn-idle-corrected.png`, `character-switch.png`, `finn-animated-game.png`, `finn-sword-attack.png` e as vistas exportadas são renders reais. Imagens estáticas não comprovam suavidade sozinhas; estados e transições foram verificados durante a execução.
 
 A queda usa **pose provisória**, sem clipe original dedicado. Escadas usam marcha sincronizada, sem IK de cada degrau; pode haver deslizamento residual dos pés. Mãos não se alinham exatamente a cada objeto. Articulações rígidas ainda podem melhorar. Roll/esquiva não foi adicionado. Não houve validação em hardware do usuário.
+
+
+## Correção do ciclo de passos invertido
+
+Após o relato de Finn andando de costas, o teste de direção mostrou que o rosto já acompanhava o movimento. A falha estava no retarget: a biblioteca usa marcha orientada para +Z, enquanto o Finn foi modelado de frente para -Z. O pé em contato deslocava-se para a frente do corpo no ciclo, produzindo a impressão de marcha para trás.
+
+`rig-finn.js` agora prepara a geometria no eixo da biblioteca e normaliza o rig completo para -Z. Os lados dos membros e os dedos dos pés foram alinhados nessa transformação. Os clipes não são reproduzidos ao contrário. O mesmo Finn e as mesmas curvas de animação foram reutilizados; física e combate não foram alterados.
+
+`test:gait` carrega o GLB exportado e mede o deslocamento de ambos os pés perto do chão. O modelo anterior falhou: Walk_Loop, pé 0, avanço relativo ao rosto **+0,3668**. Após a correção, os dois pés em caminhada e corrida deslocam-se para trás do corpo na fase de contato, como esperado. `finn-gait-results.json` registra os valores atuais.
+
+`test:direction` usa teclado real em quatro direções, diagonal, câmera girada, corrida e retorno de Jake; mede o rosto pelas malhas animadas, sem assumir que a rotação do controle é suficiente. A captura `finn-walking-forward.png` foi produzida após a correção. A ausência de IK completo continua sendo uma limitação.

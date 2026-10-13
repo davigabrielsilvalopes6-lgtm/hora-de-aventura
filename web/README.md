@@ -31,6 +31,8 @@ GAME_URL=http://127.0.0.1:4173/ npm run test:navigation
 GAME_URL=http://127.0.0.1:4173/ npm run test:extras
 GAME_URL=http://127.0.0.1:4173/ npm run test:campaign
 GAME_URL=http://127.0.0.1:4173/ npm run test:window
+GAME_URL=http://127.0.0.1:4173/ npm run test:direction
+npm run test:gait
 ```
 
 Nesta auditoria foi usada a porta 4174 para evitar confundir o checkout atual com o antigo. Fixtures são expostas somente com `?qa=1`. A suíte de campanha usa fixtures de sala/posição e comandos reais de interação, puzzles e combate; não equivale a uma partida humana contínua. A suíte de habilidades prepara posições iniciais e então atravessa os desafios por teclado e física real, sem teleportes no trajeto.

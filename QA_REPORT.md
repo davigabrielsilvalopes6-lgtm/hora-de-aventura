@@ -172,3 +172,19 @@ A atualização cobre os sistemas descritos; não declara o jogo livre de todos 
 A tentativa de reinstalar dependências com cache padrão falhou ao escrever fora das pastas permitidas. A instalação foi repetida com cache em `/workspace/.npm-cache`, dentro da área autorizada, e passou. Não foi alterada a verificação TLS nem foram solicitados tokens GitHub.
 
 Push confirmado comprova envio do código, não publicação do Pages. Verifique o workflow no GitHub. A política de rede do ambiente limita inspeção do site github.io; não afirmar deployment concluído sem evidência.
+
+
+## Revalidação após relato de caminhada de costas — ANI-06
+
+**Gravidade:** P2. **Sistema:** retarget de locomoção. **Estado:** Corrigido e testado.
+
+- Reprodução: na versão `d47e985`, caminhar com Finn e observar os pés; o rosto pode estar orientado corretamente, mas o ciclo de apoio parece avançar para trás.
+- Esperado: na fase apoiada, o pé deve deslocar-se para trás em relação ao tronco/rosto enquanto o corpo avança.
+- Observado: no GLB anterior, o teste mediu +0,3668069 na direção do rosto para o pé 0 em Walk_Loop e falhou.
+- Causa: marcha da biblioteca com frente +Z aplicada ao modelo com frente -Z, sem normalizar o eixo da geometria e do esqueleto.
+- Correção: normalizar a convenção de frente no bind/export do rig, lados dos membros e dedos dos pés. Não inverter playback nem controles.
+- Arquivos: `web/src/rig-finn.js`, GLB animado, diagnóstico visual em `finn-controller.js`, testes `finn-direction.cjs` e `finn-gait.cjs`, documentação e capturas.
+- Revalidação: modelo antigo falha no teste de apoio; novo GLB passa nos quatro casos de pé/clipe. Direção passa em quatro eixos, diagonal, câmera girada, corrida e após trocar Jake/Finn. Golpes/dano/cooldown, estados de animação, cooperação e seis unitários foram reexecutados.
+- Evidências: `web/docs/finn-gait-results.json`, `finn-direction-results.json`, `finn-walking-forward.png`, vistas do GLB e capturas de golpe.
+
+Esta revisão não reexecutou a campanha completa: a alteração é no modelo animado, sem mudar progresso, física ou lógica de combate. Os resultados da campanha acima pertencem à bateria da expansão anterior.

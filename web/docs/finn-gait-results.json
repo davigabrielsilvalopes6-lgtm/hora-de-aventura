@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "method": "Load actual exported GLB and sample each walk/run clip; both feet near ground must move backward relative to face during stance.",
+  "results": [
+    {
+      "clip": "Walk_Loop",
+      "foot": 0,
+      "contactSamples": 13,
+      "contactTravelAlongFacing": -0.37756751137373223
+    },
+    {
+      "clip": "Walk_Loop",
+      "foot": 1,
+      "contactSamples": 12,
+      "contactTravelAlongFacing": -0.3570214638421506
+    },
+    {
+      "clip": "Sprint_Loop",
+      "foot": 0,
+      "contactSamples": 20,
+      "contactTravelAlongFacing": -0.6016623758500119
+    },
+    {
+      "clip": "Sprint_Loop",
+      "foot": 1,
+      "contactSamples": 12,
+      "contactTravelAlongFacing": -0.8316184618037524
+    }
+  ]
+}

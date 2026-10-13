@@ -5,7 +5,14 @@ export async function loadAnimatedFinn(){
  const gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'');
  const root=gltf.scene,mixer=new T.AnimationMixer(root),actions=new Map(gltf.animations.map(c=>[c.name,mixer.clipAction(c)]));
  const feet=[],skeletons=new Set();root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;o.frustumCulled=false;}if(o.isSkinnedMesh){skeletons.add(o.skeleton);if(o.name.includes('Black_shoe')||o.name.includes('Black shoe'))feet.push(o);}});
- const sword=root.getObjectByName('FinnSword');let current='',phase='idle',oneShot=0,punchCount=0,wasGrounded=true,fadeTime=0;
+ const sword=root.getObjectByName('FinnSword');
+ const face=root.getObjectByName('Oval_face'),hood=root.getObjectByName('White_hood');
+ function visualForward(){
+  if(!face||!hood)return null;
+  const center=mesh=>{const point=new T.Vector3();mesh.geometry.computeBoundingBox();mesh.geometry.boundingBox.getCenter(point);mesh.applyBoneTransform(0,point);return mesh.localToWorld(point);};
+  const direction=center(face).sub(center(hood));direction.y=0;return direction.normalize().toArray();
+ }
+ let current='',phase='idle',oneShot=0,punchCount=0,wasGrounded=true,fadeTime=0;
  function play(name,{duration=0,phase:nextPhase=name,fade=.1,rate=1,hold=false}={}){
   if(!actions.has(name))throw Error('Missing animation '+name);
   if(current===name&&phase===nextPhase&&!duration){actions.get(name).timeScale=rate;return;}
@@ -45,6 +52,6 @@ export async function loadAnimatedFinn(){
    }
    fadeTime=Math.max(0,fadeTime-dt);mixer.update(dt);if(grounded)ground();else root.updateMatrixWorld(true);
   },
-  state(){return {clip:current,phase,time:actions.get(current)?.time,rate:actions.get(current)?.timeScale,groundOffset:root.position.y,transition:fadeTime>0,skins:skeletons.size,feet:feet.length,oneShot,arm:root.getObjectByName('DEF-upper_armR')?.quaternion.toArray()};}
+  state(){return {clip:current,phase,time:actions.get(current)?.time,rate:actions.get(current)?.timeScale,groundOffset:root.position.y,transition:fadeTime>0,skins:skeletons.size,feet:feet.length,oneShot,visualForward:visualForward(),arm:root.getObjectByName('DEF-upper_armR')?.quaternion.toArray()};}
  };
 }

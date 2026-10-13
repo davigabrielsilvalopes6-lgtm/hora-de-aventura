@@ -15,7 +15,9 @@
     "test:campaign": "node tests/campaign-flow.cjs",
     "test:finn": "node tests/finn-animation.cjs",
     "test:navigation": "node tests/navigation.cjs",
-    "test:window": "node tests/window-preview.cjs"
+    "test:window": "node tests/window-preview.cjs",
+    "test:direction": "node tests/finn-direction.cjs",
+    "test:gait": "node tests/finn-gait.cjs"
   },
   "dependencies": {
     "three": "0.180.0"
