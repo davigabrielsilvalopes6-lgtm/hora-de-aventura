@@ -2,11 +2,11 @@
   "browser": "154.0.8037.57",
   "results": [
     {
-      "name": "Nine missions completed with E, attack keys, finite waves and documents",
+      "name": "Expanded campaign starts with the guard objective",
       "passed": true
     },
     {
-      "name": "All 24 rooms have supported safe arrivals and exits",
+      "name": "All 26 rooms have supported safe arrivals and exits",
       "passed": true
     },
     {

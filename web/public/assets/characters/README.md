@@ -14,4 +14,4 @@ A integração muda a aparência do jogador e o movimento dos membros, preservan
 
 ## Versão animada
 
-`finn-animated.glb` inclui esqueleto, skinning rígido e sete clipes de animação adaptados da biblioteca CC0 do Quaternius. A versão estática `finn.glb` é preservada. Os controles do jogo usam J para espada e K para socos; caminhar, correr e receber dano selecionam os clipes automaticamente. Créditos e fonte das animações: `../animations/README.md`.
+`finn-animated.glb` inclui esqueleto, skinning rígido e doze clipes de animação adaptados da biblioteca CC0 do Quaternius. A versão estática `finn.glb` é preservada. Os controles do jogo usam J para espada e K para socos; repouso, caminhada, corrida, salto, queda, aterrissagem, interação e dano selecionam estados automaticamente. Queda é uma pose provisória; não há IK completo. O controlador usa fades e ritmo baseado no deslocamento real. Ao controlar Jake, Finn fica em Idle. Detalhes em `../../../docs/FINN_ANIMATIONS.md`. Créditos e fonte das animações: `../animations/README.md`.

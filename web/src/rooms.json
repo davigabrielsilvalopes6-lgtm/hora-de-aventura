@@ -460,6 +460,14 @@
           0,
           -5.5
         ]
+      },
+      {
+        "target": "greenhouse",
+        "position": [
+          5.82,
+          0,
+          5.5
+        ]
       }
     ]
   },
@@ -667,6 +675,44 @@
           0,
           0,
           7.82
+        ]
+      }
+    ]
+  },
+  "greenhouse": {
+    "title": "Estufa do castelo",
+    "width": 16,
+    "depth": 18,
+    "height": 7,
+    "color": "#B9D9E9",
+    "floor": "Térreo",
+    "episode_lead": "Adaptação original para o jogo",
+    "doors": [
+      {
+        "target": "ground_gallery",
+        "position": [
+          0,
+          0,
+          8.82
+        ]
+      }
+    ]
+  },
+  "factory_approach": {
+    "title": "Caminho da fábrica",
+    "width": 16,
+    "depth": 22,
+    "height": 8,
+    "color": "#D9C9EA",
+    "floor": "Área externa",
+    "episode_lead": "Adaptação original para o jogo",
+    "doors": [
+      {
+        "target": "main_hall",
+        "position": [
+          0,
+          0,
+          10.82
         ]
       }
     ]

@@ -11,4 +11,4 @@ Os arquivos `source.gltf` e `AnimationLibrary_Godot_Standard.bin` são a versão
 
 `export-finn-animated.mjs` e `src/rig-finn.js` adaptam os comprimentos dos ossos às proporções do Finn, vinculam as malhas por skinning rígido e preservam as curvas de rotação. Translações e escalas animadas são removidas para manter o movimento do mundo sob controle da física do jogo.
 
-Sete clipes estão no GLB: Sword_Idle, Sword_Attack, Walk_Loop, Sprint_Loop, Punch_Jab, Punch_Cross e Hit_Chest. Roll/esquiva não foi integrado nesta atualização.
+Doze clipes estão no GLB: Idle_Loop, Sword_Idle, Sword_Attack, Walk_Loop, Sprint_Loop, Punch_Jab, Punch_Cross, Hit_Chest, Jump_Start, Jump_Loop, Jump_Land e Interact. A queda utiliza uma pose provisória de Jump_Loop. Roll/esquiva não foi integrado nesta atualização.

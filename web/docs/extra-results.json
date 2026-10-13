@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "controls",
+    "five optional activities with three secrets",
+    "no duplicate reward",
+    "main quest unchanged",
+    "save/load",
+    "legacy save preserved",
+    "timing persisted"
+  ]
+}

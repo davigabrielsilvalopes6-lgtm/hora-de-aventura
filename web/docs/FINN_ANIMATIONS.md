@@ -1,35 +1,36 @@
-# Finn — esqueleto e combate animado
+# Revisão das animações do Finn
 
-## Implementado
+Foi reutilizado o Finn existente, com 53 ossos e skinning rígido cartoon. O GLB foi exportado e recarregado no Chromium: **45 malhas e 12 clipes**, em `finn-animated-export.json`. Movimentos da Universal Animation Library Standard de Quaternius, CC0.
 
-O Finn agora utiliza um esqueleto de 53 ossos, adaptado às suas proporções, com skinning rígido nas peças cartoon. As animações são as curvas reais da Universal Animation Library Standard, de Quaternius (CC0). As translações e escalas dos clipes foram removidas para não substituir a física, a orientação e a posição do jogador.
+| Estado | Solução atual |
+| --- | --- |
+| Parado | `Idle_Loop`, respiração sutil; espada oculta fora do ataque |
+| Caminhando | `Walk_Loop`, velocidade pelo deslocamento real |
+| Correndo | `Sprint_Loop`, clipe próprio e transição de 0,12 s |
+| Início do salto | `Jump_Start`, 0,14 s |
+| Subida / queda | `Jump_Loop`; queda mantém uma pose em 65% do clipe |
+| Aterrissando | `Jump_Land`, 0,16 s, antes da locomoção |
+| Interagindo | `Interact`, 0,30 s, em portas e objetos |
+| Espada / socos / dano | Clipes existentes, sem alteração do combate |
+| Finn sem controle | Idle; corpo permanece onde Tab foi pressionado |
 
-- J: Sword_Attack, com Sword_Idle ao retornar ao repouso.
-- K: alterna Punch_Jab e Punch_Cross; a espada fica oculta durante os socos.
-- Movimento: Walk_Loop; Shift: Sprint_Loop.
-- Dano: Hit_Chest, respeitando o estado do ataque.
-- Duração dos golpes: 0,42 s; dano uma única vez após 0,13 s. Alcance de espada 2,8; alcance de soco 1,8. Orientação, paredes e invulnerabilidade existentes são preservadas.
-- Troca de sala, recuperação e reinício cancelam golpes pendentes.
-- O apoio visual dos pés é ajustado à superfície sem mover o corpo físico.
+`finn-controller.js` usa `AnimationMixer` e transições de peso, o recurso apropriado no Three.js. Translações de root motion não substituem a física.
 
-A versão animada do GLB é incorporada ao HTML na compilação: o modo leve continua funcionando sem solicitar arquivos externos. O GLB também está disponível separadamente em `public/assets/characters/finn-animated.glb`. A versão estática anterior foi preservada.
+## Correções
 
-## Evidências reais
+- Cortes bruscos entre repouso, caminhada e corrida substituídos por fades curtos.
+- Pressionar movimento contra parede não mantém caminhada sem deslocamento.
+- Ritmo dos passos acompanha deslocamento real, incluindo rampas; corrida não é usada durante caminhada.
+- Salto, queda, aterrissagem e interação receberam estados próprios ou solução provisória compatível.
+- Trocar para Jake estaciona Finn e encerra locomoção; voltar restaura o controle.
+- Apoio visual dos sapatos calculado pelas malhas animadas; física permanece separada.
 
-`export-finn-animated.mjs` exportou e recarregou o modelo no Chromium: 45 malhas e sete clipes. Dados em `finn-animated-export.json`. As vistas `finn-animated-front.png`, `finn-animated-side.png` e `finn-animated-back.png` foram renderizadas em WebGL. Durante a inspeção foram corrigidos os encaixes dos joelhos e do pescoço; as capturas foram refeitas.
+Golpes mantêm 0,42 s de intervalo, um acerto após 0,13 s, alcance de espada 2,8 e soco 1,8. `attack()` e `strike()` foram comparados ao commit anterior; sua lógica foi preservada.
 
-`finn-animated-game.png` e `finn-sword-attack.png` são capturas reais do jogo.
+## Evidências e limitações
 
-Verificações executadas na compilação atual:
+Testes por teclado cobrem Idle → Walk → Run → Idle, parede, salto, queda, aterrissagem, porta, troca de personagem, ossos dos golpes e dano único. Travessias físicas de ponte, escada e apoio gigante foram executadas. Consulte o relatório QA para a bateria completa.
 
-- Build concluído; três testes unitários passaram.
-- Teste de orientação passou: portas, marcador, caminho inverso, movimento, resolução e ausência de erros.
-- Teste específico de Finn passou: esqueleto carregado, caminhada/corrida por teclado, alteração real da rotação do osso durante o ataque, atraso do dano, apenas um acerto, cooldown, retorno ao repouso e os dois socos por K.
-- Dez verificações de navegador passaram: movimento, portas, combate, salto/janela/telhados, GLB original do castelo, salvamento, pausa e ausência de erros.
-- Seis verificações de aceitação passaram: nove missões, 24 salas, salvamento inválido, HTML offline, toque e ausência de erros.
+`finn-idle-corrected.png`, `character-switch.png`, `finn-animated-game.png`, `finn-sword-attack.png` e as vistas exportadas são renders reais. Imagens estáticas não comprovam suavidade sozinhas; estados e transições foram verificados durante a execução.
 
-O teste de cooldown inicialmente dependia do tempo gasto capturando uma imagem: em renderização por software, a captura podia demorar mais que o cooldown e permitir outro ataque válido. A verificação foi corrigida para avançar passos de física controlados, separando as capturas; os testes por teclado foram mantidos.
-
-## Limitações
-
-Roll/esquiva não foi integrado. As poses usam skinning rígido, com acabamento simplificado nas articulações; não houve validação em dispositivos físicos nem medição de FPS em GPU real. O salto continua controlado pela física, sem clipe dedicado de salto nesta atualização. A publicação via GitHub Pages não é comprovada pelos testes locais.
+A queda usa **pose provisória**, sem clipe original dedicado. Escadas usam marcha sincronizada, sem IK de cada degrau; pode haver deslizamento residual dos pés. Mãos não se alinham exatamente a cada objeto. Articulações rígidas ainda podem melhorar. Roll/esquiva não foi adicionado. Não houve validação em hardware do usuário.

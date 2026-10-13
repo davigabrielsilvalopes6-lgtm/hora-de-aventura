@@ -1,13 +1,36 @@
 {
-  "unit_tests_passed": 3,
-  "browser_checks_passed": 16,
-  "checks_passed": 19,
-  "blocked_checks": 1,
-  "blocked_reason": "Managed Chromium rejects file://; offline DOM execution validated; Windows file opening unverified",
+  "scope": "Expanded browser campaign and Finn animation review",
+  "baseline_commit": "954f6755356ce061ae3d28e27e807bb0fd6bb749",
+  "unit_tests_passed": 6,
+  "general_browser_checks_passed": 16,
+  "specialized_suites_passed": [
+    "animation-states",
+    "finn",
+    "cooperative",
+    "abilities",
+    "navigation",
+    "extras",
+    "campaign",
+    "window"
+  ],
+  "physical_ability_traversals_passed": 4,
+  "main_missions_verified": 15,
+  "distinct_main_events": 70,
+  "accepted_progress_units": 80,
+  "areas": 26,
+  "door_arrivals": 54,
+  "optional_activities_verified": 5,
+  "blocked_checks": [
+    "file:// navigation blocked by managed Chromium; Windows opening unverified"
+  ],
+  "human_first_playthrough_duration_verified": false,
+  "gpu_performance_measured": false,
   "browser": "154.0.8037.57",
   "original_glb_meshes": 374,
-  "godot_project_preserved": true,
-  "github_published": false,
-  "public_game_url": null,
-  "html_sha256": "694577836d0cc9521c23b7c6e8e6010029d86934f6b890ec47fb941f5245f1ee"
+  "combat_attack_and_strike_unchanged": true,
+  "original_castle_unchanged": true,
+  "screenshots_are_real": true,
+  "pages_deployment_verified": false,
+  "public_game_url": "https://davigabrielsilvalopes6-lgtm.github.io/hora-de-aventura/",
+  "html_sha256": "36dfa2bfc5f5fb4421610390adf0950f534028ce4a5264c66202d902ada7aae4"
 }

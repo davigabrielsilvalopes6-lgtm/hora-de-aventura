@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "results": [
+    "duct",
+    "bridge",
+    "ladder",
+    "giant"
+  ],
+  "method": "Isolated location fixtures only for setup; traversal uses real keyboard events and physics without position overrides."
+}

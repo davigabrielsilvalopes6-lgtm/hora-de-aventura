@@ -10,7 +10,7 @@ const fs=require('node:fs');
   await page.getByRole('button',{name:'Nova aventura',exact:true}).click();
   await page.getByRole('button',{name:'Continuar',exact:true}).click();
   const state=()=>page.evaluate(()=>__qa.state());
-  await page.waitForFunction(()=>__qa.state().arrow==='ground_gallery');
+  await page.evaluate(()=>__qa.point('guard_intro'));await page.keyboard.press('KeyE');await page.getByRole('button',{name:'Continuar',exact:true}).click();await page.waitForFunction(()=>__qa.state().arrow==='ground_gallery');
   for(const target of ['ground_gallery','kitchen','laboratory']){
    assert.equal((await state()).nextDoor,target);
    await page.evaluate(t=>__qa.point(t),target);await page.keyboard.press('KeyE');

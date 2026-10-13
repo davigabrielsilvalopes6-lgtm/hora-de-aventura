@@ -6,10 +6,16 @@
   "scripts": {
     "build": "node build.mjs",
     "start": "node serve.mjs",
-    "test:unit": "node --test tests/quests.test.mjs",
+    "test:unit": "node --test tests/*.test.mjs",
     "test:browser": "node tests/browser.cjs && node tests/acceptance.cjs",
+    "test:animation-states": "node tests/animation-states.cjs",
+    "test:cooperative": "node tests/cooperative.cjs",
+    "test:abilities": "node tests/abilities.cjs",
+    "test:extras": "node tests/extras.cjs",
+    "test:campaign": "node tests/campaign-flow.cjs",
     "test:finn": "node tests/finn-animation.cjs",
-    "test:navigation": "node tests/navigation.cjs"
+    "test:navigation": "node tests/navigation.cjs",
+    "test:window": "node tests/window-preview.cjs"
   },
   "dependencies": {
     "three": "0.180.0"
